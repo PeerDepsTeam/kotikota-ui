@@ -48,8 +48,7 @@ import {
 import {cn} from "@/lib/utils.ts";
 import {useLoading, useToast} from "@/hooks";
 import "react-calendar/dist/Calendar.css";
-import { Card } from "@/components/shadcn-ui/card";
-
+import {Card} from "@/components/shadcn-ui/card";
 
 export const Signup: FC = () => {
   const authStore = useAuthStore();
@@ -91,20 +90,20 @@ export const Signup: FC = () => {
 
   return (
     <RedirectAuthenticated>
-        <div className="w-[70rem] flex items-center justify-center shadow-none border-none">
-        <Card className="p-8 border-none flex items-center justify-center">
-            <div className="flex flex-row items-center gap-20">
-                <StepperView step="signup-with">
-                    <SignupWith onSignup={signup} isLoading={isLoading} />
-                </StepperView>
+      <div className="flex w-[70rem] items-center justify-center border-none shadow-none">
+        <Card className="flex items-center justify-center border-none p-8">
+          <div className="flex flex-row items-center gap-20">
+            <StepperView step="signup-with">
+              <SignupWith onSignup={signup} isLoading={isLoading} />
+            </StepperView>
 
-                <StepperView step="user-info">
-                    <SignupUserForm onCreate={createUser} isLoading={isLoading} />
-                </StepperView>
-            </div>
+            <StepperView step="user-info">
+              <SignupUserForm onCreate={createUser} isLoading={isLoading} />
+            </StepperView>
+          </div>
         </Card>
-  </div>
-  </RedirectAuthenticated>
+      </div>
+    </RedirectAuthenticated>
   );
 };
 
@@ -119,30 +118,29 @@ const SignupWith: FC<SignupWithProps> = ({onSignup, isLoading}) => {
   });
 
   return (
-    <Card className="w-[35rem] flex-col items-baseline justify-center float-right border-0 shadow-none border-none">
-        <div className="text-4xl font-medium text-center">Créer un compte</div>
-        <p className="text-center">
-          Déjà membre ?{" "}
-          <Button variant="link" className="text-violet-500">
-              <Link to="/login">Se connecter</Link>
-          </Button>
-        </p>
-        <div className="flex flex-row gap-2">
-         <li className="border-t-2 border-purple-600 w-[20rem] list-none mt-5 mb-7 relative">
+    <Card className="float-right w-[35rem] flex-col items-baseline justify-center border-0 border-none shadow-none">
+      <div className="text-center text-4xl font-medium">Créer un compte</div>
+      <p className="text-center">
+        Déjà membre ?{" "}
+        <Button variant="link" className="text-violet-500">
+          <Link to="/login">Se connecter</Link>
+        </Button>
+      </p>
+      <div className="flex flex-row gap-2">
+        <li className="relative mb-7 mt-5 w-[20rem] list-none border-t-2 border-purple-600">
           {/** form his position now */}
-          <div className="bg-purple-600 w-6 h-6 flex text-white items-center justify-center rounded-full absolute -left-3">
+          <div className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-purple-600 text-white">
             1
           </div>
-          </li>
+        </li>
 
-          {/** from the end of the line and create a forch */}
-          <li className="border-t-2 border-purple-100 w-[20rem] list-none mt-5 mb-6 relative">
-          <div className="bg-purple-100 w-6 h-6 flex items-center justify-center text-white rounded-full absolute right-1 transform translate-x-4">
+        {/** from the end of the line and create a forch */}
+        <li className="relative mb-6 mt-5 w-[20rem] list-none border-t-2 border-purple-100">
+          <div className="absolute right-1 flex h-6 w-6 translate-x-4 transform items-center justify-center rounded-full bg-purple-100 text-white">
             2
           </div>
-          </li>
-        </div>
-          
+        </li>
+      </div>
 
       <Form {...form}>
         <form
@@ -183,12 +181,12 @@ const SignupWith: FC<SignupWithProps> = ({onSignup, isLoading}) => {
 
           <div className="w-full">
             <Button
-            data-testid="continue-signup"
-            className="h-12 w-full rounded-full bg-violet-500 mb-2"
-            type="submit"
-            isLoading={isLoading}
+              data-testid="continue-signup"
+              className="mb-2 h-12 w-full rounded-full bg-violet-500"
+              type="submit"
+              isLoading={isLoading}
             >
-                Continue
+              Continue
             </Button>
           </div>
         </form>
@@ -206,7 +204,8 @@ const SignupWith: FC<SignupWithProps> = ({onSignup, isLoading}) => {
 
         <div className="flex justify-center space-x-4">
           <Button size="lg" variant="outline" className="w-full">
-            <Icons.google className="mr-2 h-4 w-4 text-violet-500" /> Connectez-vous avec Google
+            <Icons.google className="mr-2 h-4 w-4 text-violet-500" />{" "}
+            Connectez-vous avec Google
           </Button>
         </div>
       </div>
@@ -231,195 +230,195 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
   });
 
   return (
-    <Card className="w-[35rem] flex-col items-baseline justify-center float-right border-none shadow-none">
-        <div className="text-4xl font-medium text-center">Créer un compte</div>
-          <p className="text-center">
-              Déjà membre ?{" "}
-              <Button variant="link" className="text-violet-500">
-                  <Link to="/login">Se connecter</Link>
-              </Button>
-          </p>
-        <div className="flex flex-row gap-2">
-         <li className="border-t-2 border-purple-100 w-[20rem] list-none mt-5 mb-7 relative">
-          <div className="bg-purple-100 w-6 h-6 flex text-white items-center justify-center rounded-full absolute -left-3">
+    <Card className="float-right w-[35rem] flex-col items-baseline justify-center border-none shadow-none">
+      <div className="text-center text-4xl font-medium">Créer un compte</div>
+      <p className="text-center">
+        Déjà membre ?{" "}
+        <Button variant="link" className="text-violet-500">
+          <Link to="/login">Se connecter</Link>
+        </Button>
+      </p>
+      <div className="flex flex-row gap-2">
+        <li className="relative mb-7 mt-5 w-[20rem] list-none border-t-2 border-purple-100">
+          <div className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-purple-100 text-white">
             1
           </div>
-          </li>
+        </li>
 
-          <li className="border-t-2 border-purple-600 w-[20rem] list-none mt-5 mb-6 relative">
-          <div className="bg-purple-600 w-6 h-6 flex items-center justify-center text-white rounded-full absolute right-1 transform translate-x-4">
+        <li className="relative mb-6 mt-5 w-[20rem] list-none border-t-2 border-purple-600">
+          <div className="absolute right-1 flex h-6 w-6 translate-x-4 transform items-center justify-center rounded-full bg-purple-600 text-white">
             2
           </div>
-          </li>
-        </div>
-    <Form {...form}>
-      <form
-        className="mb-6 flex flex-col items-center justify-center space-y-6"
-        onSubmit={form.handleSubmit(onCreate)}
-      >
-        <div className="w-full">
-          <FormField
-            name="first_name"
-            control={form.control}
-            render={({field}) => (
-              <FormItem className="text-md">
-                <FormLabel>Nom</FormLabel>
-                <FormControl className="h-12">
-                  <Input data-testid="first_name" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <div className="w-full">
-          <FormField
-            name="last_name"
-            control={form.control}
-            render={({field}) => (
-              <FormItem className="text-md">
-                <FormLabel>Prénom</FormLabel>
-                <FormControl className="h-12">
-                  <Input data-testid="last_name" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-
-        <div className="w-full">
-          <FormField
-            name="username"
-            control={form.control}
-            render={({field}) => (
-              <FormItem className="text-md">
-                <FormLabel>Surnom</FormLabel>
-                <FormControl className="h-12">
-                  <Input data-testid="username" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-
-        <div className="w-full">
-          <FormField
-            control={form.control}
-            name="sex"
-            render={({field}) => (
-              <FormItem className="space-y-3">
-                <FormLabel>Genre</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger data-testid="sex-select">
-                      <SelectValue placeholder="Select your sex" />
-                    </SelectTrigger>
+        </li>
+      </div>
+      <Form {...form}>
+        <form
+          className="mb-6 flex flex-col items-center justify-center space-y-6"
+          onSubmit={form.handleSubmit(onCreate)}
+        >
+          <div className="w-full">
+            <FormField
+              name="first_name"
+              control={form.control}
+              render={({field}) => (
+                <FormItem className="text-md">
+                  <FormLabel>Nom</FormLabel>
+                  <FormControl className="h-12">
+                    <Input data-testid="first_name" {...field} />
                   </FormControl>
-                  <SelectContent>
-                    <SelectItem value="M">Male</SelectItem>
-                    <SelectItem value="F" data-testid="female-sex">
-                      Femelle
-                    </SelectItem>
-                    <SelectItem value="OTHER">Ne rien dire</SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="w-full">
+            <FormField
+              name="last_name"
+              control={form.control}
+              render={({field}) => (
+                <FormItem className="text-md">
+                  <FormLabel>Prénom</FormLabel>
+                  <FormControl className="h-12">
+                    <Input data-testid="last_name" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
-        <div className="w-full">
-          <FormField
-            name="birth_date"
-            control={form.control}
-            render={({field}) => (
-              <FormItem className="text-md flex flex-col">
-                <FormLabel>Date de naissance</FormLabel>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <FormControl className="w-full">
-                      <Button
-                        data-testid="date-picker"
-                        variant={"outline"}
-                        className={cn(
-                          "w-full pl-3 text-left font-normal",
-                          !field.value && "text-muted-foreground"
-                        )}
-                      >
-                        {field.value ? (
-                          format(field.value, "PPP")
-                        ) : (
-                          <span>Prend une date</span>
-                        )}
-                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                      </Button>
+          <div className="w-full">
+            <FormField
+              name="username"
+              control={form.control}
+              render={({field}) => (
+                <FormItem className="text-md">
+                  <FormLabel>Surnom</FormLabel>
+                  <FormControl className="h-12">
+                    <Input data-testid="username" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          <div className="w-full">
+            <FormField
+              control={form.control}
+              name="sex"
+              render={({field}) => (
+                <FormItem className="space-y-3">
+                  <FormLabel>Genre</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger data-testid="sex-select">
+                        <SelectValue placeholder="Select your sex" />
+                      </SelectTrigger>
                     </FormControl>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                      onChange={field.onChange}
-                      value={field.value}
-                      locale="fr-FR"
-                      minDate={new Date("1900-01-01")}
-                      maxDate={new Date()}
-                    />
-                  </PopoverContent>
-                </Popover>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
+                    <SelectContent>
+                      <SelectItem value="M">Male</SelectItem>
+                      <SelectItem value="F" data-testid="female-sex">
+                        Femelle
+                      </SelectItem>
+                      <SelectItem value="OTHER">Ne rien dire</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
-        <div className="w-full">
-          <FormField
-            name="bio"
-            control={form.control}
-            render={({field}) => (
-              <FormItem className="text-md">
-                <FormLabel>Bio</FormLabel>
-                <FormControl className="h-12">
-                  <Input data-testid="bio" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
+          <div className="w-full">
+            <FormField
+              name="birth_date"
+              control={form.control}
+              render={({field}) => (
+                <FormItem className="text-md flex flex-col">
+                  <FormLabel>Date de naissance</FormLabel>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl className="w-full">
+                        <Button
+                          data-testid="date-picker"
+                          variant={"outline"}
+                          className={cn(
+                            "w-full pl-3 text-left font-normal",
+                            !field.value && "text-muted-foreground"
+                          )}
+                        >
+                          {field.value ? (
+                            format(field.value, "PPP")
+                          ) : (
+                            <span>Prend une date</span>
+                          )}
+                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        onChange={field.onChange}
+                        value={field.value}
+                        locale="fr-FR"
+                        minDate={new Date("1900-01-01")}
+                        maxDate={new Date()}
+                      />
+                    </PopoverContent>
+                  </Popover>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
-        <div className="h-auto w-full">
-          <FormField
-            name="about"
-            control={form.control}
-            render={({field}) => (
-              <FormItem className="text-md">
-                <FormLabel>A propos</FormLabel>
-                <FormControl className="h-12">
-                  <Textarea data-testid="about" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
+          <div className="w-full">
+            <FormField
+              name="bio"
+              control={form.control}
+              render={({field}) => (
+                <FormItem className="text-md">
+                  <FormLabel>Bio</FormLabel>
+                  <FormControl className="h-12">
+                    <Input data-testid="bio" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
-        <div className="w-full">
-          <Button
-            className="h-12 w-full rounded-full bg-violet-500"
-            type="submit"
-            isLoading={isLoading}
-          >
-            Continue
-          </Button>
-        </div>
-      </form>
-    </Form>
+          <div className="h-auto w-full">
+            <FormField
+              name="about"
+              control={form.control}
+              render={({field}) => (
+                <FormItem className="text-md">
+                  <FormLabel>A propos</FormLabel>
+                  <FormControl className="h-12">
+                    <Textarea data-testid="about" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          <div className="w-full">
+            <Button
+              className="h-12 w-full rounded-full bg-violet-500"
+              type="submit"
+              isLoading={isLoading}
+            >
+              Continue
+            </Button>
+          </div>
+        </form>
+      </Form>
     </Card>
   );
 };
