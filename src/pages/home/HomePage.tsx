@@ -1,4 +1,5 @@
 import {CardSuggestion} from "@/components/CardSuggestion";
+import {Landing} from "@/components/Landing";
 import {PaginationCustom} from "@/components/common/PaginationCustom";
 import {Badge} from "@/components/shadcn-ui/badge";
 import {Button} from "@/components/shadcn-ui/button";
@@ -8,8 +9,9 @@ import {FC} from "react";
 export const HomePage: FC = () => {
   return (
     <>
-      <div className=" bg-customBackground mx-auto max-w-screen-lg">
-        <header className="flex flex-col items-center justify-between py-5">
+      <div className=" bg-customBackground max-w-screen-full mx-auto">
+        <Landing />
+        <div className=" mt-5 flex flex-col items-center justify-between py-5">
           <h1 className="text-xl font-semibold text-primary">
             <span className="font-['DM Sans'] text-[32px] font-bold leading-[44.80px] text-zinc-900">
               Open{" "}
@@ -18,7 +20,7 @@ export const HomePage: FC = () => {
               donations
             </span>
           </h1>
-          <div className="flex w-1/2">
+          <div className="mt-5 flex w-1/2">
             <Input className="w-full" placeholder="Find donations..." />
             <Button
               className="ml-2 hover:bg-secondary hover:text-white"
@@ -27,7 +29,7 @@ export const HomePage: FC = () => {
               Search
             </Button>
           </div>
-        </header>
+        </div>
         <div className="flex flex-wrap items-center justify-center gap-4 py-4">
           <Badge
             variant="default"
@@ -79,6 +81,8 @@ export const HomePage: FC = () => {
           </Badge>
         </div>
         <div className=" flex flex-wrap items-center justify-evenly gap-4 pb-4">
+          <CardSuggestion />
+          <CardSuggestion />
           <CardSuggestion />
           <CardSuggestion />
           <CardSuggestion />

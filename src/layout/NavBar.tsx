@@ -28,41 +28,49 @@ export interface AnonymousHeaderProps {
 
 const AnonymousHeader: FC<AnonymousHeaderProps> = ({page}) => {
   return (
-    <div className="mx-auto my-0 flex h-full w-[95%] items-center justify-between bg-white">
-      <div className="logo w-30 h-15 col-span-1">
-        <a
-          href="#"
-          data-testid="blogify-logo"
-          className="text-4xl font-bold tracking-tight text-[#8AA0D2]"
-        >
-          KotiKota
-        </a>
+    <header className="absolute left-0 right-0 top-0 flex items-center justify-between p-6">
+      <div className="flex items-center justify-start">
+        <div className="logo w-30 h-15 col-span-1">
+          <a
+            href="#"
+            data-testid="Kotikota-logo"
+            className="text-4xl font-bold tracking-tight text-white"
+          >
+            KotiKota.
+          </a>
+        </div>
       </div>
-      <div data-testid="auth-button" className="space-x-3">
-        {page === "sign_up" && (
-          <Button variant="outline" size="lg" className="h-9" asChild>
-            <Link to="/login">Sign in</Link>
-          </Button>
-        )}
-        {page === "sign_in" && (
-          <Button size="lg" className="h-9" asChild>
-            <Link to="/signup">Sign up</Link>
-          </Button>
-        )}
+      <nav className="flex items-center justify-end">
+        <ul className="flex space-x-4">
+          <li>
+            <div data-testid="auth-button" className="space-x-3">
+              {page === "sign_up" && (
+                <Button variant="outline" size="lg" className="h-9" asChild>
+                  <Link to="/login">Sign in</Link>
+                </Button>
+              )}
+              {page === "sign_in" && (
+                <Button size="lg" className="h-9" asChild>
+                  <Link to="/signup">Sign up</Link>
+                </Button>
+              )}
 
-        {!page && (
-          <>
-            <Button variant="outline" size="lg" className="h-9" asChild>
-              <Link to="/login">Login</Link>
-            </Button>
+              {!page && (
+                <>
+                  <Button variant="outline" size="lg" className="h-9" asChild>
+                    <Link to="/login">Login</Link>
+                  </Button>
 
-            <Button size="lg" className="h-9">
-              <Link to="/signup">Sign up</Link>
-            </Button>
-          </>
-        )}
-      </div>
-    </div>
+                  <Button size="lg" className="h-9">
+                    <Link to="/signup">Sign up</Link>
+                  </Button>
+                </>
+              )}
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
   );
 };
 
@@ -85,10 +93,10 @@ const AuthenticatedHeader: FC = () => {
       <div className="logo w-30 h-15 col-span-1">
         <Link
           to="/"
-          data-testid="blogify-logo"
-          className="text-4xl font-bold text-purple-500"
+          data-testid="KotiKota-logo"
+          className="font-logo text-2xl font-bold"
         >
-          KotiKota
+          BLOGIFY
         </Link>
       </div>
       <div className="col-span-8 flex justify-center">
