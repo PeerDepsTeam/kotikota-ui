@@ -5,7 +5,7 @@ import {format} from "date-fns";
 import Calendar from "react-calendar";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {CalendarIcon} from "lucide-react";
-import {GoogleAuthProvider, GithubAuthProvider} from "firebase/auth";
+import {GoogleAuthProvider} from "firebase/auth";
 import {nanoid} from "nanoid";
 import {Button} from "@/components/common/button.tsx";
 import {
