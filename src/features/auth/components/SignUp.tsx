@@ -119,11 +119,11 @@ const SignupWith: FC<SignupWithProps> = ({onSignup, isLoading}) => {
 
   return (
     <Card className="float-right w-[35rem] flex-col items-baseline justify-center border-0 border-none shadow-none">
-      <div className="text-center text-4xl font-medium">Créer un compte</div>
+      <div className="text-center text-4xl font-medium">Create an account</div>
       <p className="text-center">
-        Déjà membre ?{" "}
+        Already member ?{" "}
         <Button variant="link" className="text-violet-500">
-          <Link to="/login">Se connecter</Link>
+          <Link to="/login">Login</Link>
         </Button>
       </p>
       <div className="flex flex-row gap-2">
@@ -167,7 +167,7 @@ const SignupWith: FC<SignupWithProps> = ({onSignup, isLoading}) => {
               control={form.control}
               render={({field}) => (
                 <FormItem data-testid="password-field" className="text-md">
-                  <FormLabel>Mot de passe</FormLabel>
+                  <FormLabel>Password</FormLabel>
                   <FormControl className="h-12">
                     <Input {...field} type="password" />
                   </FormControl>
@@ -196,18 +196,19 @@ const SignupWith: FC<SignupWithProps> = ({onSignup, isLoading}) => {
             <span className="w-full border-t" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-background px-2 text-muted-foreground">OU</span>
+            <span className="bg-background px-2 text-muted-foreground">OR</span>
           </div>
         </div>
 
         <div className="flex justify-center space-x-4">
-          <Button size="lg" 
+          <Button
+            size="lg"
             variant="outline"
-            className="w-full" 
+            className="w-full"
             onClick={() => void onSignup(GoogleAuthProvider)}
           >
-            <Icons.google className="mr-2 h-4 w-4 text-violet-500" />{" "}
-            Connectez-vous avec Google
+            <Icons.google className="mr-2 h-4 w-4 text-violet-500" /> sign-in
+            with Google
           </Button>
         </div>
       </div>
@@ -232,22 +233,22 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
   });
 
   return (
-    <Card className="float-right w-[35rem] flex-col items-baseline justify-center border-none shadow-none">
-      <div className="text-center text-4xl font-medium">Créer un compte</div>
+    <Card className="float-right w-[45rem] flex-col items-baseline justify-center border-none shadow-none">
+      <div className="text-center text-4xl font-medium">Create an account</div>
       <p className="text-center">
-        Déjà membre ?{" "}
+        Already member ?{" "}
         <Button variant="link" className="text-violet-500">
-          <Link to="/login">Se connecter</Link>
+          <Link to="/login">Login</Link>
         </Button>
       </p>
-      <div className="flex flex-row gap-2">
-        <li className="relative mb-7 mt-5 w-[20rem] list-none border-t-2 border-purple-100">
+      <div className="mb-7 flex flex-row gap-2">
+        <li className="relative  mt-5 w-[25rem] list-none border-t-2 border-purple-100">
           <div className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-purple-100 text-white">
             1
           </div>
         </li>
 
-        <li className="relative mb-6 mt-5 w-[20rem] list-none border-t-2 border-purple-600">
+        <li className="relative mt-5 w-[25rem] list-none border-t-2 border-purple-600">
           <div className="absolute right-1 flex h-6 w-6 translate-x-4 transform items-center justify-center rounded-full bg-purple-600 text-white">
             2
           </div>
@@ -258,156 +259,156 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
           className="mb-6 flex flex-col items-center justify-center space-y-6"
           onSubmit={form.handleSubmit(onCreate)}
         >
-          <div className="w-full">
-            <FormField
-              name="first_name"
-              control={form.control}
-              render={({field}) => (
-                <FormItem className="text-md">
-                  <FormLabel>Nom</FormLabel>
-                  <FormControl className="h-12">
-                    <Input data-testid="first_name" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          <div className="w-full">
-            <FormField
-              name="last_name"
-              control={form.control}
-              render={({field}) => (
-                <FormItem className="text-md">
-                  <FormLabel>Prénom</FormLabel>
-                  <FormControl className="h-12">
-                    <Input data-testid="last_name" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-
-          <div className="w-full">
-            <FormField
-              name="username"
-              control={form.control}
-              render={({field}) => (
-                <FormItem className="text-md">
-                  <FormLabel>Surnom</FormLabel>
-                  <FormControl className="h-12">
-                    <Input data-testid="username" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-
-          <div className="w-full">
-            <FormField
-              control={form.control}
-              name="sex"
-              render={({field}) => (
-                <FormItem className="space-y-3">
-                  <FormLabel>Genre</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger data-testid="sex-select">
-                        <SelectValue placeholder="Select your sex" />
-                      </SelectTrigger>
+          <div className="flex w-[40rem] flex-col gap-6 sm:flex-row">
+            <div className="mr-5 w-full sm:w-1/2">
+              {/* First Name */}
+              <FormField
+                name="first_name"
+                control={form.control}
+                render={({field}) => (
+                  <FormItem className="text-md">
+                    <FormLabel>Name</FormLabel>
+                    <FormControl className="h-12">
+                      <Input data-testid="first_name" {...field} />
                     </FormControl>
-                    <SelectContent>
-                      <SelectItem value="M">Male</SelectItem>
-                      <SelectItem value="F" data-testid="female-sex">
-                        Femelle
-                      </SelectItem>
-                      <SelectItem value="OTHER">Ne rien dire</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-          <div className="w-full">
-            <FormField
-              name="birth_date"
-              control={form.control}
-              render={({field}) => (
-                <FormItem className="text-md flex flex-col">
-                  <FormLabel>Date de naissance</FormLabel>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <FormControl className="w-full">
-                        <Button
-                          data-testid="date-picker"
-                          variant={"outline"}
-                          className={cn(
-                            "w-full pl-3 text-left font-normal",
-                            !field.value && "text-muted-foreground"
-                          )}
-                        >
-                          {field.value ? (
-                            format(field.value, "PPP")
-                          ) : (
-                            <span>Prend une date</span>
-                          )}
-                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                        </Button>
+              {/* Last Name */}
+              <FormField
+                name="last_name"
+                control={form.control}
+                render={({field}) => (
+                  <FormItem className="text-md">
+                    <FormLabel>Last name</FormLabel>
+                    <FormControl className="h-12">
+                      <Input data-testid="last_name" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Username */}
+              <FormField
+                name="username"
+                control={form.control}
+                render={({field}) => (
+                  <FormItem className="text-md">
+                    <FormLabel>Username</FormLabel>
+                    <FormControl className="h-12">
+                      <Input data-testid="username" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Sex */}
+              <FormField
+                control={form.control}
+                name="sex"
+                render={({field}) => (
+                  <FormItem className="space-y-3">
+                    <FormLabel>Genre</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger data-testid="sex-select">
+                          <SelectValue placeholder="Select your sex" />
+                        </SelectTrigger>
                       </FormControl>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        onChange={field.onChange}
-                        value={field.value}
-                        locale="fr-FR"
-                        minDate={new Date("1900-01-01")}
-                        maxDate={new Date()}
-                      />
-                    </PopoverContent>
-                  </Popover>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+                      <SelectContent>
+                        <SelectItem value="M">Male</SelectItem>
+                        <SelectItem value="F" data-testid="female-sex">
+                          Female
+                        </SelectItem>
+                        <SelectItem value="OTHER">Nothing</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
-          <div className="w-full">
-            <FormField
-              name="bio"
-              control={form.control}
-              render={({field}) => (
-                <FormItem className="text-md">
-                  <FormLabel>Bio</FormLabel>
-                  <FormControl className="h-12">
-                    <Input data-testid="bio" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+            <div className="mt-2 w-full sm:w-1/2">
+              {/* Birth Date */}
+              <FormField
+                name="birth_date"
+                control={form.control}
+                render={({field}) => (
+                  <FormItem className="text-md flex flex-col">
+                    <FormLabel>Birthdate</FormLabel>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl className="h-12 w-full">
+                          <Button
+                            data-testid="date-picker"
+                            variant={"outline"}
+                            className={cn(
+                              "w-full pl-3 text-left font-normal",
+                              !field.value && "text-muted-foreground"
+                            )}
+                          >
+                            {field.value ? (
+                              format(field.value, "PPP")
+                            ) : (
+                              <span>Pick a date</span>
+                            )}
+                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          onChange={field.onChange}
+                          value={field.value}
+                          locale="en-EN"
+                          minDate={new Date("1900-01-01")}
+                          maxDate={new Date()}
+                        />
+                      </PopoverContent>
+                    </Popover>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-          <div className="h-auto w-full">
-            <FormField
-              name="about"
-              control={form.control}
-              render={({field}) => (
-                <FormItem className="text-md">
-                  <FormLabel>A propos</FormLabel>
-                  <FormControl className="h-12">
-                    <Textarea data-testid="about" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+              {/* Bio */}
+              <FormField
+                name="bio"
+                control={form.control}
+                render={({field}) => (
+                  <FormItem className="text-md">
+                    <FormLabel>Bio</FormLabel>
+                    <FormControl className="h-12">
+                      <Input data-testid="bio" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* About */}
+              <FormField
+                name="about"
+                control={form.control}
+                render={({field}) => (
+                  <FormItem className="text-md">
+                    <FormLabel>About</FormLabel>
+                    <FormControl className="h-32">
+                      <Textarea data-testid="about" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
           </div>
 
           <div className="w-full">
