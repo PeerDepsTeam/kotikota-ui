@@ -85,10 +85,6 @@ export const HomePage: FC = () => {
           <CardSuggestion />
           <CardSuggestion />
           <CardSuggestion />
-          <CardSuggestion />
-          <CardSuggestion />
-          <CardSuggestion />
-          <CardSuggestion />
         </div>
         <PaginationCustom />
       </div>
