@@ -1,15 +1,15 @@
 import React, {FC} from "react";
 import {Card, CardContent} from "./shadcn-ui/card";
 import {Button} from "./shadcn-ui/button";
-
+import tsunami from "../../public/images/tsunami.png";
 export const CardSuggestion: FC = () => {
   return (
-    <Card className="w-[350px] overflow-hidden rounded-lg">
+    <Card className=" w-[314px] overflow-hidden rounded-lg">
       <img
         alt="Tsunami in Malika"
         className="h-48 w-full object-cover"
         height="200"
-        src="/placeholder.svg"
+        src={tsunami}
         style={{
           aspectRatio: "314/200",
           objectFit: "cover",
