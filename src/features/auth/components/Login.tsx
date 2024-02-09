@@ -1,7 +1,7 @@
 import {FC} from "react";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useForm} from "react-hook-form";
-import { GoogleAuthProvider} from "firebase/auth";
+import {GoogleAuthProvider} from "firebase/auth";
 import {Link, useNavigate} from "react-router-dom";
 import {
   Form,
@@ -80,7 +80,6 @@ const LoginWith: FC<LoginWithProps> = ({isLoading, onLogin}) => {
           className="flex w-[23rem] flex-col items-center justify-center space-y-6"
           onSubmit={form.handleSubmit(onLogin)}
         >
-
           <div className="w-full">
             <FormField
               name="email"
@@ -119,7 +118,6 @@ const LoginWith: FC<LoginWithProps> = ({isLoading, onLogin}) => {
               className="h-12 w-full rounded-full bg-[#9288F8] hover:bg-[#3D30A2]"
               type="submit"
               isLoading={isLoading}
-            
             >
               Continue
             </Button>
@@ -142,10 +140,9 @@ const LoginWith: FC<LoginWithProps> = ({isLoading, onLogin}) => {
             size="lg"
             variant="outline"
             className="border-pink-400"
-            onClick={() => void onLogin(GoogleAuthProvider)} 
+            onClick={() => void onLogin(GoogleAuthProvider)}
           >
             <Icons.google className="mr-2 h-4 w-4" /> Sign in with Google
-         
           </Button>
         </div>
       </div>
