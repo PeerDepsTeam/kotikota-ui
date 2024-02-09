@@ -1,3 +1,3 @@
-# Kokikota  💰✨
+# Kokikota 💰✨
 
 Let's kotikota
