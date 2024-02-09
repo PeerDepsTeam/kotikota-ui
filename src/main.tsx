@@ -5,6 +5,7 @@ import {Toaster} from "@/components/shadcn-ui/toaster";
 import {TooltipProvider} from "@/components/shadcn-ui/tooltip.tsx";
 import {HomePage} from "@/pages/home";
 import {LoginPage, SignupPage} from "@/pages/auth";
+import {CreatePostPage} from "@/pages/post";
 import "./index.css";
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -20,6 +21,10 @@ const ROUTER = createBrowserRouter([
   {
     path: "/signup",
     element: <SignupPage />,
+  },
+  {
+    path: "posts/:id/launch",
+    element: <CreatePostPage />,
   },
 ]);
 

@@ -33,9 +33,9 @@ const AnonymousHeader: FC<AnonymousHeaderProps> = ({page}) => {
         <a
           href="#"
           data-testid="blogify-logo"
-          className="text-4xl font-bold tracking-tight"
+          className="text-4xl font-bold text-purple-500"
         >
-          BLOGIFY
+          Kotikota
         </a>
       </div>
       <div data-testid="auth-button" className="space-x-3">
@@ -86,9 +86,9 @@ const AuthenticatedHeader: FC = () => {
         <Link
           to="/"
           data-testid="blogify-logo"
-          className="font-logo text-2xl font-bold"
+          className="text-4xl font-bold text-purple-500"
         >
-          BLOGIFY
+          Kotikota
         </Link>
       </div>
       <div className="col-span-8 flex justify-center">

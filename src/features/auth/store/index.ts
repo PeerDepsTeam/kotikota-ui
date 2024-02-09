@@ -1,11 +1,10 @@
 import {create} from "zustand";
 import {createJSONStorage, persist} from "zustand/middleware";
-
-type Whoami = {};
+import {User} from "@/services/api/gen";
 
 export interface AuthStore {
-  user: Whoami | null;
-  setUser(user: Whoami): void;
+  user: User | null;
+  setUser(user: User): void;
   nullify(): void;
 }
 
