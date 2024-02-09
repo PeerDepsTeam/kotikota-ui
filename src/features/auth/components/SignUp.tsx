@@ -5,7 +5,7 @@ import {format} from "date-fns";
 import Calendar from "react-calendar";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {CalendarIcon} from "lucide-react";
-/*import {GoogleAuthProvider, GithubAuthProvider} from "firebase/auth";*/
+import {GoogleAuthProvider, GithubAuthProvider} from "firebase/auth";
 import {nanoid} from "nanoid";
 import {Button} from "@/components/common/button.tsx";
 import {
@@ -128,13 +128,11 @@ const SignupWith: FC<SignupWithProps> = ({onSignup, isLoading}) => {
       </p>
       <div className="flex flex-row gap-2">
         <li className="relative mb-7 mt-5 w-[20rem] list-none border-t-2 border-purple-600">
-          {/** form his position now */}
           <div className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-purple-600 text-white">
             1
           </div>
         </li>
 
-        {/** from the end of the line and create a forch */}
         <li className="relative mb-6 mt-5 w-[20rem] list-none border-t-2 border-purple-100">
           <div className="absolute right-1 flex h-6 w-6 translate-x-4 transform items-center justify-center rounded-full bg-purple-100 text-white">
             2
@@ -203,7 +201,11 @@ const SignupWith: FC<SignupWithProps> = ({onSignup, isLoading}) => {
         </div>
 
         <div className="flex justify-center space-x-4">
-          <Button size="lg" variant="outline" className="w-full">
+          <Button size="lg" 
+            variant="outline"
+            className="w-full" 
+            onClick={() => void onSignup(GoogleAuthProvider)}
+          >
             <Icons.google className="mr-2 h-4 w-4 text-violet-500" />{" "}
             Connectez-vous avec Google
           </Button>
