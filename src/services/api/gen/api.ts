@@ -27,7 +27,7 @@ import {
 } from "./common";
 import type {RequestArgs} from "./base";
 // @ts-ignore
-import {BASE_PATH, BaseAPI, operationServerMap,} from "./base";
+import {BASE_PATH, BaseAPI, operationServerMap} from "./base";
 
 /**
  *
@@ -719,7 +719,7 @@ export const PayingApiFp = function (configuration?: Configuration) {
       const localVarOperationServerBasePath =
         operationServerMap["PayingApi.initiatePayment"]?.[
           localVarOperationServerIndex
-          ]?.url;
+        ]?.url;
       return (axios, basePath) =>
         createRequestFunction(
           localVarAxiosArgs,
@@ -1074,7 +1074,7 @@ export const PostingApiFp = function (configuration?: Configuration) {
       const localVarOperationServerBasePath =
         operationServerMap["PostingApi.crupdatePostById"]?.[
           localVarOperationServerIndex
-          ]?.url;
+        ]?.url;
       return (axios, basePath) =>
         createRequestFunction(
           localVarAxiosArgs,
@@ -1104,7 +1104,7 @@ export const PostingApiFp = function (configuration?: Configuration) {
       const localVarOperationServerBasePath =
         operationServerMap["PostingApi.deletePostById"]?.[
           localVarOperationServerIndex
-          ]?.url;
+        ]?.url;
       return (axios, basePath) =>
         createRequestFunction(
           localVarAxiosArgs,
@@ -1134,7 +1134,7 @@ export const PostingApiFp = function (configuration?: Configuration) {
       const localVarOperationServerBasePath =
         operationServerMap["PostingApi.getFundRaised"]?.[
           localVarOperationServerIndex
-          ]?.url;
+        ]?.url;
       return (axios, basePath) =>
         createRequestFunction(
           localVarAxiosArgs,
@@ -1164,7 +1164,7 @@ export const PostingApiFp = function (configuration?: Configuration) {
       const localVarOperationServerBasePath =
         operationServerMap["PostingApi.getPostById"]?.[
           localVarOperationServerIndex
-          ]?.url;
+        ]?.url;
       return (axios, basePath) =>
         createRequestFunction(
           localVarAxiosArgs,
@@ -1197,7 +1197,7 @@ export const PostingApiFp = function (configuration?: Configuration) {
       const localVarOperationServerBasePath =
         operationServerMap["PostingApi.getPosts"]?.[
           localVarOperationServerIndex
-          ]?.url;
+        ]?.url;
       return (axios, basePath) =>
         createRequestFunction(
           localVarAxiosArgs,
@@ -1786,7 +1786,7 @@ export const UserApiFp = function (configuration?: Configuration) {
       const localVarOperationServerBasePath =
         operationServerMap["UserApi.crupdateUserById"]?.[
           localVarOperationServerIndex
-          ]?.url;
+        ]?.url;
       return (axios, basePath) =>
         createRequestFunction(
           localVarAxiosArgs,
@@ -1816,7 +1816,7 @@ export const UserApiFp = function (configuration?: Configuration) {
       const localVarOperationServerBasePath =
         operationServerMap["UserApi.getUserById"]?.[
           localVarOperationServerIndex
-          ]?.url;
+        ]?.url;
       return (axios, basePath) =>
         createRequestFunction(
           localVarAxiosArgs,
