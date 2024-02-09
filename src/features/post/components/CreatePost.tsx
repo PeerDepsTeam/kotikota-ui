@@ -1,5 +1,5 @@
 import {FC, useState} from "react";
-import {useForm} from "react-hook-form";
+import {SubmitHandler, useForm} from "react-hook-form";
 import {Editor} from "tinymce";
 import {RichTextEditor} from "@/features/wisiwig";
 import {
@@ -13,9 +13,14 @@ import {
 } from "@/components/shadcn-ui/form.tsx";
 import {Input} from "@/components/shadcn-ui/input.tsx";
 import {Button} from "@/components/shadcn-ui/button.tsx";
-import {createPostSchema} from "@/features/post/schema.ts";
+import {
+  CreatePost as CreatePostData,
+  createPostSchema,
+} from "@/features/post/schema.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Post} from "@/services/api/gen";
+import {PostProvider} from "@/services/api";
+import {useToast} from "@/hooks";
 
 export interface CreatePostProps {
   post: Post;
@@ -23,10 +28,29 @@ export interface CreatePostProps {
 
 export const CreatePost: FC<CreatePostProps> = ({post}) => {
   const [editor, setEditor] = useState<Editor | null>(null);
-
-  const form = useForm({
+  const toast = useToast();
+  const form = useForm<CreatePostData>({
     resolver: zodResolver(createPostSchema),
   });
+
+  const createPost: SubmitHandler<CreatePostData> = async (data) => {
+    try {
+      const toCreate: Post = {
+        ...data,
+        content:
+          editor?.getContent() ??
+          `<h1>Planning to launch ${data.title} project</h1>`,
+        creation_datetime: new Date(),
+        categories: [],
+      };
+      await PostProvider.crupdate(toCreate);
+    } catch (e) {
+      toast({
+        variant: "destructive",
+        message: "Unable to create post. please try again",
+      });
+    }
+  };
 
   return (
     <Form {...form}>
@@ -142,14 +166,20 @@ export const CreatePost: FC<CreatePostProps> = ({post}) => {
 
             <FormField
               name="deadline"
-              control={form.control}
-              render={({field}) => (
+              render={() => (
                 <FormItem data-testid="email-field" className="text-md">
                   <FormLabel className="text-md font-bold text-gray-600">
                     When do you expect getting those funds ?
                   </FormLabel>
                   <FormControl className="h-12">
-                    <Input {...field} type="date" />
+                    <Input
+                      name="deadline"
+                      type="date"
+                      onChange={(ev) => {
+                        const date = new Date(ev.target.value);
+                        form.setValue("deadline", date);
+                      }}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -157,7 +187,11 @@ export const CreatePost: FC<CreatePostProps> = ({post}) => {
             />
 
             <div className="mb-6">
-              <Button className="bg-neutral-700" size="lg">
+              <Button
+                className="bg-neutral-700"
+                size="lg"
+                onClick={form.handleSubmit(createPost)}
+              >
                 Launch now
               </Button>
             </div>
