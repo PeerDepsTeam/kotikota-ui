@@ -71,7 +71,7 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       backgroundImage: {
-        kid: "url('/public/images/kidLanding.png')",
+        kid: "url('/src/assets/images/kidLanding.png')",
       },
     },
   },

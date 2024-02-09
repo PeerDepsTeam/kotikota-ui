@@ -1,7 +1,7 @@
 import {FC} from "react";
 import {Card, CardContent} from "./shadcn-ui/card";
 import {Button} from "./shadcn-ui/button";
-import tsunami from "../../public/images/tsunami.png";
+import tsunami from "../assets/images/tsunami.png";
 
 export const CardSuggestion: FC = () => {
   return (

@@ -9,7 +9,7 @@ import {FC} from "react";
 export const HomePage: FC = () => {
   return (
     <>
-      <div className=" bg-customBackground max-w-screen-full mx-auto">
+      <div className=" max-w-screen-full mx-auto bg-white">
         <Landing />
         <div className=" mt-5 flex flex-col items-center justify-between py-5">
           <h1 className="text-xl font-semibold text-primary">

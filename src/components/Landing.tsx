@@ -4,7 +4,7 @@ import React, {FC} from "react";
 export const Landing: FC = () => {
   return (
     <>
-      <div className="bg-kid relative min-h-screen bg-cover bg-center">
+      <div className="relative min-h-screen bg-kid bg-cover bg-center">
         <div className="absolute inset-0 bg-black opacity-50" />
 
         <NavBar />
