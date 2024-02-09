@@ -13,17 +13,17 @@
  */
 
 import type {Configuration} from "./configuration";
-import type {AxiosInstance, AxiosPromise, AxiosRequestConfig} from "axios";
+import type {AxiosPromise, AxiosInstance, AxiosRequestConfig} from "axios";
 import globalAxios from "axios";
 // Some imports not used depending on template conditions
 // @ts-ignore
 import {
-  assertParamExists,
-  createRequestFunction,
   DUMMY_BASE_URL,
-  serializeDataIfNeeded,
+  assertParamExists,
   setSearchParams,
+  serializeDataIfNeeded,
   toPathString,
+  createRequestFunction,
 } from "./common";
 import type {RequestArgs} from "./base";
 // @ts-ignore
@@ -48,7 +48,6 @@ export interface AuthenticationPayload {
    */
   provider_id?: string;
 }
-
 /**
  *
  * @export
@@ -68,7 +67,25 @@ export interface BadRequestException {
    */
   message?: string;
 }
-
+/**
+ *
+ * @export
+ * @interface Category
+ */
+export interface Category {
+  /**
+   *
+   * @type {string}
+   * @memberof Category
+   */
+  id?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Category
+   */
+  label?: string;
+}
 /**
  *
  * @export
@@ -108,7 +125,6 @@ export interface Exception {
    */
   message?: string;
 }
-
 /**
  *
  * @export
@@ -140,7 +156,6 @@ export interface FundsRaised {
    */
   transactions?: Array<PaymentRequest>;
 }
-
 /**
  *
  * @export
@@ -160,7 +175,6 @@ export interface InternalServerException {
    */
   message?: string;
 }
-
 /**
  *
  * @export
@@ -180,7 +194,6 @@ export interface NotAuthorizedException {
    */
   message?: string;
 }
-
 /**
  *
  * @export
@@ -333,7 +346,6 @@ export interface Post {
    */
   updated_at?: Date;
 }
-
 /**
  *
  * @export
@@ -353,7 +365,6 @@ export interface ResourceNotFoundException {
    */
   message?: string;
 }
-
 /**
  *
  * @export
@@ -455,7 +466,6 @@ export interface TooManyRequestsException {
    */
   message?: string;
 }
-
 /**
  *
  * @export
