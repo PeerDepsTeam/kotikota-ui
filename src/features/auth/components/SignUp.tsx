@@ -119,11 +119,11 @@ const SignupWith: FC<SignupWithProps> = ({onSignup, isLoading}) => {
 
   return (
     <Card className="float-right w-[35rem] flex-col items-baseline justify-center border-0 border-none shadow-none">
-      <div className="text-center text-4xl font-medium">Créer un compte</div>
+      <div className="text-center text-4xl font-medium">Create an account</div>
       <p className="text-center">
-        Déjà membre ?{" "}
+        Already member ?{" "}
         <Button variant="link" className="text-violet-500">
-          <Link to="/login">Se connecter</Link>
+          <Link to="/login">Login</Link>
         </Button>
       </p>
       <div className="flex flex-row gap-2">
@@ -167,7 +167,7 @@ const SignupWith: FC<SignupWithProps> = ({onSignup, isLoading}) => {
               control={form.control}
               render={({field}) => (
                 <FormItem data-testid="password-field" className="text-md">
-                  <FormLabel>Mot de passe</FormLabel>
+                  <FormLabel>Password</FormLabel>
                   <FormControl className="h-12">
                     <Input {...field} type="password" />
                   </FormControl>
@@ -196,7 +196,7 @@ const SignupWith: FC<SignupWithProps> = ({onSignup, isLoading}) => {
             <span className="w-full border-t" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-background px-2 text-muted-foreground">OU</span>
+            <span className="bg-background px-2 text-muted-foreground">OR</span>
           </div>
         </div>
 
@@ -207,7 +207,7 @@ const SignupWith: FC<SignupWithProps> = ({onSignup, isLoading}) => {
             onClick={() => void onSignup(GoogleAuthProvider)}
           >
             <Icons.google className="mr-2 h-4 w-4 text-violet-500" />{" "}
-            Connectez-vous avec Google
+            sign-in with Google
           </Button>
         </div>
       </div>
@@ -233,11 +233,11 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
 
   return (
     <Card className="float-right w-[45rem] flex-col items-baseline justify-center border-none shadow-none">
-      <div className="text-center text-4xl font-medium">Créer un compte</div>
+      <div className="text-center text-4xl font-medium">Create an account</div>
       <p className="text-center">
-        Déjà membre ?{" "}
+        Already member ?{" "}
         <Button variant="link" className="text-violet-500">
-          <Link to="/login">Se connecter</Link>
+          <Link to="/login">Login</Link>
         </Button>
       </p>
       <div className="flex flex-row gap-2 mb-7">
@@ -266,7 +266,7 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem className="text-md">
-                    <FormLabel>Nom</FormLabel>
+                    <FormLabel>Name</FormLabel>
                     <FormControl className="h-12">
                       <Input data-testid="first_name" {...field} />
                     </FormControl>
@@ -281,7 +281,7 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem className="text-md">
-                    <FormLabel>Prénom</FormLabel>
+                    <FormLabel>Last name</FormLabel>
                     <FormControl className="h-12">
                       <Input data-testid="last_name" {...field} />
                     </FormControl>
@@ -296,7 +296,7 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem className="text-md">
-                    <FormLabel>Surnom</FormLabel>
+                    <FormLabel>Username</FormLabel>
                     <FormControl className="h-12">
                       <Input data-testid="username" {...field} />
                     </FormControl>
@@ -321,9 +321,9 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
                       <SelectContent>
                         <SelectItem value="M">Male</SelectItem>
                         <SelectItem value="F" data-testid="female-sex">
-                          Femelle
+                          Female
                         </SelectItem>
-                        <SelectItem value="OTHER">Ne rien dire</SelectItem>
+                        <SelectItem value="OTHER">Nothing</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -339,7 +339,7 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem className="text-md flex flex-col">
-                    <FormLabel>Date de naissance</FormLabel>
+                    <FormLabel>Birthdate</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl className="w-full h-12">
@@ -354,7 +354,7 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
                             {field.value ? (
                               format(field.value, "PPP")
                             ) : (
-                              <span>Prend une date</span>
+                              <span>Pick a date</span>
                             )}
                             <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                           </Button>
@@ -364,7 +364,7 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
                         <Calendar
                           onChange={field.onChange}
                           value={field.value}
-                          locale="fr-FR"
+                          locale="en-EN"
                           minDate={new Date("1900-01-01")}
                           maxDate={new Date()}
                         />
@@ -396,7 +396,7 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem className="text-md">
-                    <FormLabel>A propos</FormLabel>
+                    <FormLabel>About</FormLabel>
                     <FormControl className="h-32">
                       <Textarea data-testid="about" {...field} />
                     </FormControl>
