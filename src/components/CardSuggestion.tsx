@@ -1,7 +1,8 @@
-import React, {FC} from "react";
+import {FC} from "react";
 import {Card, CardContent} from "./shadcn-ui/card";
 import {Button} from "./shadcn-ui/button";
 import tsunami from "../../public/images/tsunami.png";
+
 export const CardSuggestion: FC = () => {
   return (
     <Card className=" w-[314px] overflow-hidden rounded-lg">
@@ -17,8 +18,15 @@ export const CardSuggestion: FC = () => {
         width="314"
       />
       <CardContent className="p-4">
-        <div className="text-xs text-gray-500">June 27, 2021</div>
-        <div className="text-xs text-gray-500">1,099 donations</div>
+        <div className="flex flex-wrap justify-between">
+          <div className="flex items-center  justify-center text-xs text-gray-500">
+            June 27, 2021
+          </div>
+          <div className="flex items-center justify-center text-xs text-gray-500">
+            1,099 donations
+          </div>
+        </div>
+
         <div className="mt-2 text-lg font-bold">Tsunami in Malika</div>
         <p className="mt-1 text-sm text-gray-700">
           Emergency! A tsunami has just hit Malika, Tarasudi District. Help our

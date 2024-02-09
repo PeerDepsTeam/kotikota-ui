@@ -32,9 +32,9 @@ const AnonymousHeader: FC<AnonymousHeaderProps> = ({page}) => {
       <div className="flex items-center justify-start">
         <div className="logo w-30 h-15 col-span-1">
           <a
-            href="#"
+            href="/"
             data-testid="Kotikota-logo"
-            className="text-4xl font-bold tracking-tight text-white"
+            className="text-4xl font-bold tracking-tight text-primary"
           >
             KotiKota.
           </a>
@@ -57,7 +57,11 @@ const AnonymousHeader: FC<AnonymousHeaderProps> = ({page}) => {
 
               {!page && (
                 <>
-                  <Button variant="outline" size="lg" className="h-9" asChild>
+                  <Button
+                    size="lg"
+                    className="h-9 bg-slate-900 text-slate-200"
+                    asChild
+                  >
                     <Link to="/login">Login</Link>
                   </Button>
 

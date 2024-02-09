@@ -16,9 +16,11 @@ export const Landing: FC = () => {
             Be a part of the breakthrough and make someone's dream come true.
           </p>
           <div className="flex justify-center space-x-4">
-            <button className="rounded-md bg-blue-600 px-6 py-3 shadow-lg hover:bg-blue-700">
-              Donate now
-            </button>
+            <a href="/login">
+              <button className="rounded-md bg-blue-600 px-6 py-3 shadow-lg hover:bg-blue-700">
+                Donate now
+              </button>
+            </a>
             <a
               href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley
              "

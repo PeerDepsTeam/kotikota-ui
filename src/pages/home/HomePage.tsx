@@ -21,7 +21,7 @@ export const HomePage: FC = () => {
             </span>
           </h1>
           <div className="mt-5 flex w-1/2">
-            <Input className="w-full" placeholder="Find donations..." />
+            <Input className="w-full" placeholder="Find project..." />
             <Button
               className="ml-2 hover:bg-secondary hover:text-white"
               variant="default"
