@@ -1,8 +1,8 @@
 import {FC} from "react";
-import {Layout} from "@/layout";
-import {CreatePost} from "@/features/post";
 import {useAuthStore} from "@/features/auth";
+import {CreatePost} from "@/features/post";
 import {createPost} from "@/features/post/utils.ts";
+import {Layout} from "@/layout";
 
 export const CreatePostPage: FC = () => {
   const user = useAuthStore((auth) => auth.user!);
@@ -11,7 +11,7 @@ export const CreatePostPage: FC = () => {
 
   return (
     <Layout>
-      <div className="h-full w-full pt-5">
+      <div className="relative h-full w-full pt-5">
         <CreatePost post={post} key={post.id} />
       </div>
     </Layout>

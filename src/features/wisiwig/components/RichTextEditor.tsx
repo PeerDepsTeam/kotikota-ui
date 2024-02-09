@@ -25,31 +25,13 @@ const ACTIVE_PLUGINS = [
   "insertdatetime",
   "media",
   "table",
-  "code",
-  "codesample",
-  "help",
-  "wordcount",
 ];
-
-// Refer to https://www.tiny.cloud/docs/tinymce/latest/toolbar-configuration-options/ for more info
-const TOOLBAR_LAYOUT = [
-  "undo redo",
-  "blocks",
-  "bold italic",
-  "forecolor",
-  "alignleft aligncenter ",
-  "alignright alignjustify",
-  "bullist numlist outdent indent codesample",
-  "removeformat",
-  "help",
-].join(" | ");
 
 // Intentionally type as any for simplicity
 // Refer to https://www.tiny.cloud/docs/tinymce/latest/editor-important-options/ for more info.
 const TINY_MCE_CONFIGURATION: IAllProps["init"] = {
   plugins: ACTIVE_PLUGINS,
-  toolbar: TOOLBAR_LAYOUT,
-  toolbar_mode: "sliding",
+  toolbar: false,
   skin: "borderless",
   // word count, watermark (!)
   statusbar: false,
@@ -57,7 +39,6 @@ const TINY_MCE_CONFIGURATION: IAllProps["init"] = {
   quickbars_insert_toolbar: false,
   menubar: false,
   // control its height by element's height wrapping it
-  height: "100%",
   content_css: "writer",
   images_upload_handler: () => {
     return Promise.resolve("");
@@ -69,6 +50,7 @@ export interface RichTextEditorProps {
   id?: string;
   disabled?: boolean;
   onInit: IAllProps["onInit"];
+  height?: string;
   onImageUpload?: (typeof TINY_MCE_CONFIGURATION)["images_upload_handler"];
 }
 
@@ -81,6 +63,7 @@ export const RichTextEditor: FC<RichTextEditorProps> = ({
   children = "",
   disabled = false,
   onImageUpload = NOOP_FN,
+  height = "100%",
 }) => {
   const onEditorInit: IAllProps["onInit"] = (ev, editor) => {
     onInit && onInit(ev, editor);
@@ -96,6 +79,7 @@ export const RichTextEditor: FC<RichTextEditorProps> = ({
         apiKey={TINY_MCE_API_KEY}
         init={{
           ...TINY_MCE_CONFIGURATION,
+          height,
           images_upload_handler: onImageUpload,
         }}
       />
