@@ -16,6 +16,7 @@ module.exports = {
       },
     },
     fontFamily: {
+      sans: ["Rationale", "system-ui", "sans-serif"],
       logo: ["Lilita One", "sans-serif"],
       title: ["Oswald", "sans-serif"],
     },
