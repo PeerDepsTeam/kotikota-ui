@@ -201,13 +201,14 @@ const SignupWith: FC<SignupWithProps> = ({onSignup, isLoading}) => {
         </div>
 
         <div className="flex justify-center space-x-4">
-          <Button size="lg" 
+          <Button
+            size="lg"
             variant="outline"
-            className="w-full" 
+            className="w-full"
             onClick={() => void onSignup(GoogleAuthProvider)}
           >
-            <Icons.google className="mr-2 h-4 w-4 text-violet-500" />{" "}
-            sign-in with Google
+            <Icons.google className="mr-2 h-4 w-4 text-violet-500" /> sign-in
+            with Google
           </Button>
         </div>
       </div>
@@ -240,7 +241,7 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
           <Link to="/login">Login</Link>
         </Button>
       </p>
-      <div className="flex flex-row gap-2 mb-7">
+      <div className="mb-7 flex flex-row gap-2">
         <li className="relative  mt-5 w-[25rem] list-none border-t-2 border-purple-100">
           <div className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-purple-100 text-white">
             1
@@ -258,13 +259,13 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
           className="mb-6 flex flex-col items-center justify-center space-y-6"
           onSubmit={form.handleSubmit(onCreate)}
         >
-          <div className="flex flex-col sm:flex-row gap-6 w-[40rem]">
-            <div className="w-full sm:w-1/2 mr-5">
+          <div className="flex w-[40rem] flex-col gap-6 sm:flex-row">
+            <div className="mr-5 w-full sm:w-1/2">
               {/* First Name */}
               <FormField
                 name="first_name"
                 control={form.control}
-                render={({ field }) => (
+                render={({field}) => (
                   <FormItem className="text-md">
                     <FormLabel>Name</FormLabel>
                     <FormControl className="h-12">
@@ -279,7 +280,7 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
               <FormField
                 name="last_name"
                 control={form.control}
-                render={({ field }) => (
+                render={({field}) => (
                   <FormItem className="text-md">
                     <FormLabel>Last name</FormLabel>
                     <FormControl className="h-12">
@@ -294,7 +295,7 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
               <FormField
                 name="username"
                 control={form.control}
-                render={({ field }) => (
+                render={({field}) => (
                   <FormItem className="text-md">
                     <FormLabel>Username</FormLabel>
                     <FormControl className="h-12">
@@ -309,10 +310,13 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
               <FormField
                 control={form.control}
                 name="sex"
-                render={({ field }) => (
+                render={({field}) => (
                   <FormItem className="space-y-3">
                     <FormLabel>Genre</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
                       <FormControl>
                         <SelectTrigger data-testid="sex-select">
                           <SelectValue placeholder="Select your sex" />
@@ -332,17 +336,17 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
               />
             </div>
 
-            <div className="w-full sm:w-1/2 mt-2">
+            <div className="mt-2 w-full sm:w-1/2">
               {/* Birth Date */}
               <FormField
                 name="birth_date"
                 control={form.control}
-                render={({ field }) => (
+                render={({field}) => (
                   <FormItem className="text-md flex flex-col">
                     <FormLabel>Birthdate</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
-                        <FormControl className="w-full h-12">
+                        <FormControl className="h-12 w-full">
                           <Button
                             data-testid="date-picker"
                             variant={"outline"}
@@ -379,7 +383,7 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
               <FormField
                 name="bio"
                 control={form.control}
-                render={({ field }) => (
+                render={({field}) => (
                   <FormItem className="text-md">
                     <FormLabel>Bio</FormLabel>
                     <FormControl className="h-12">
@@ -394,7 +398,7 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
               <FormField
                 name="about"
                 control={form.control}
-                render={({ field }) => (
+                render={({field}) => (
                   <FormItem className="text-md">
                     <FormLabel>About</FormLabel>
                     <FormControl className="h-32">
@@ -406,7 +410,6 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
               />
             </div>
           </div>
-
 
           <div className="w-full">
             <Button
