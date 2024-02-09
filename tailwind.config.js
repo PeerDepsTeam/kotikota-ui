@@ -16,6 +16,7 @@ module.exports = {
       },
     },
     fontFamily: {
+      sans: ["Rationale", "system-ui", "sans-serif"],
       logo: ["Lilita One", "sans-serif"],
       title: ["Oswald", "sans-serif"],
     },
@@ -26,14 +27,8 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
+        primary: "#8AA0D2",
+        secondary: "#0F111D",
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
@@ -54,6 +49,7 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        customBackground: "#E5E5E5",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -73,6 +69,9 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      backgroundImage: {
+        kid: "url('/src/assets/images/kidLanding.png')",
       },
     },
   },

@@ -1,4 +1,3 @@
-import {refreshIdToken} from "@/services/security";
 import {ProviderMiddleware} from "@/services/api/provider/middleware/provider_middleware.ts";
 
 // 30mins
