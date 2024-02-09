@@ -72,6 +72,26 @@ export interface BadRequestException {
 /**
  *
  * @export
+ * @interface Category
+ */
+export interface Category {
+  /**
+   *
+   * @type {string}
+   * @memberof Category
+   */
+  id?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Category
+   */
+  label?: string;
+}
+
+/**
+ *
+ * @export
  * @interface Exception
  */
 export interface Exception {
@@ -260,10 +280,10 @@ export interface Post {
   amount_required?: number;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Post
    */
-  deadline?: string;
+  deadline?: Date;
   /**
    *
    * @type {string}
@@ -294,6 +314,12 @@ export interface Post {
    * @memberof Post
    */
   author?: User;
+  /**
+   *
+   * @type {Array<Category>}
+   * @memberof Post
+   */
+  categories?: Array<Category>;
   /**
    *
    * @type {Date}
@@ -360,10 +386,10 @@ export interface SignUp {
   username?: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof SignUp
    */
-  birth_date?: string;
+  birth_date?: Date;
   /**
    *
    * @type {string}
@@ -462,10 +488,10 @@ export interface User {
   username?: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof User
    */
-  birth_date?: string;
+  birth_date?: Date;
   /**
    *
    * @type {string}
@@ -505,6 +531,268 @@ export const UserSexEnum = {
 } as const;
 
 export type UserSexEnum = (typeof UserSexEnum)[keyof typeof UserSexEnum];
+
+/**
+ * CategoryApi - axios parameter creator
+ * @export
+ */
+export const CategoryApiAxiosParamCreator = function (
+  configuration?: Configuration
+) {
+  return {
+    /**
+     *
+     * @summary crupdate category
+     * @param {string} cid
+     * @param {Category} category Category to crupdate
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    crupdateCategoryById: async (
+      cid: string,
+      category: Category,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'cid' is not null or undefined
+      assertParamExists("crupdateCategoryById", "cid", cid);
+      // verify required parameter 'category' is not null or undefined
+      assertParamExists("crupdateCategoryById", "category", category);
+      const localVarPath = `/categories/{cid}`.replace(
+        `{${"cid"}}`,
+        encodeURIComponent(String(cid))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "PUT",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        category,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @summary Get all categories
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCategories: async (
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/categories`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "GET",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+  };
+};
+
+/**
+ * CategoryApi - functional programming interface
+ * @export
+ */
+export const CategoryApiFp = function (configuration?: Configuration) {
+  const localVarAxiosParamCreator = CategoryApiAxiosParamCreator(configuration);
+  return {
+    /**
+     *
+     * @summary crupdate category
+     * @param {string} cid
+     * @param {Category} category Category to crupdate
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async crupdateCategoryById(
+      cid: string,
+      category: Category,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Category>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.crupdateCategoryById(
+          cid,
+          category,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["CategoryApi.crupdateCategoryById"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @summary Get all categories
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getCategories(
+      options?: AxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<Array<Category>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getCategories(options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["CategoryApi.getCategories"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+  };
+};
+
+/**
+ * CategoryApi - factory interface
+ * @export
+ */
+export const CategoryApiFactory = function (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) {
+  const localVarFp = CategoryApiFp(configuration);
+  return {
+    /**
+     *
+     * @summary crupdate category
+     * @param {string} cid
+     * @param {Category} category Category to crupdate
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    crupdateCategoryById(
+      cid: string,
+      category: Category,
+      options?: any
+    ): AxiosPromise<Category> {
+      return localVarFp
+        .crupdateCategoryById(cid, category, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     *
+     * @summary Get all categories
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCategories(options?: any): AxiosPromise<Array<Category>> {
+      return localVarFp
+        .getCategories(options)
+        .then((request) => request(axios, basePath));
+    },
+  };
+};
+
+/**
+ * CategoryApi - object-oriented interface
+ * @export
+ * @class CategoryApi
+ * @extends {BaseAPI}
+ */
+export class CategoryApi extends BaseAPI {
+  /**
+   *
+   * @summary crupdate category
+   * @param {string} cid
+   * @param {Category} category Category to crupdate
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CategoryApi
+   */
+  public crupdateCategoryById(
+    cid: string,
+    category: Category,
+    options?: AxiosRequestConfig
+  ) {
+    return CategoryApiFp(this.configuration)
+      .crupdateCategoryById(cid, category, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @summary Get all categories
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CategoryApi
+   */
+  public getCategories(options?: AxiosRequestConfig) {
+    return CategoryApiFp(this.configuration)
+      .getCategories(options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+}
 
 /**
  * HealthApi - axios parameter creator
@@ -993,12 +1281,14 @@ export const PostingApiAxiosParamCreator = function (
      * @summary Get all posts.
      * @param {number} page
      * @param {number} pageSize
+     * @param {string} [categories] coma-separated categories
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     getPosts: async (
       page: number,
       pageSize: number,
+      categories?: string,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'page' is not null or undefined
@@ -1027,6 +1317,10 @@ export const PostingApiAxiosParamCreator = function (
 
       if (pageSize !== undefined) {
         localVarQueryParameter["page_size"] = pageSize;
+      }
+
+      if (categories !== undefined) {
+        localVarQueryParameter["categories"] = categories;
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -1178,12 +1472,14 @@ export const PostingApiFp = function (configuration?: Configuration) {
      * @summary Get all posts.
      * @param {number} page
      * @param {number} pageSize
+     * @param {string} [categories] coma-separated categories
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async getPosts(
       page: number,
       pageSize: number,
+      categories?: string,
       options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Post>>
@@ -1191,6 +1487,7 @@ export const PostingApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getPosts(
         page,
         pageSize,
+        categories,
         options
       );
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
@@ -1278,16 +1575,18 @@ export const PostingApiFactory = function (
      * @summary Get all posts.
      * @param {number} page
      * @param {number} pageSize
+     * @param {string} [categories] coma-separated categories
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     getPosts(
       page: number,
       pageSize: number,
+      categories?: string,
       options?: any
     ): AxiosPromise<Array<Post>> {
       return localVarFp
-        .getPosts(page, pageSize, options)
+        .getPosts(page, pageSize, categories, options)
         .then((request) => request(axios, basePath));
     },
   };
@@ -1366,6 +1665,7 @@ export class PostingApi extends BaseAPI {
    * @summary Get all posts.
    * @param {number} page
    * @param {number} pageSize
+   * @param {string} [categories] coma-separated categories
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof PostingApi
@@ -1373,10 +1673,11 @@ export class PostingApi extends BaseAPI {
   public getPosts(
     page: number,
     pageSize: number,
+    categories?: string,
     options?: AxiosRequestConfig
   ) {
     return PostingApiFp(this.configuration)
-      .getPosts(page, pageSize, options)
+      .getPosts(page, pageSize, categories, options)
       .then((request) => request(this.axios, this.basePath));
   }
 }
