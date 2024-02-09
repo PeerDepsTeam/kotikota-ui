@@ -1,4 +1,3 @@
-import {refreshIdToken} from "@/services/security";
 import {ProviderMiddleware} from "@/services/api/provider/middleware/provider_middleware.ts";
 
 // 30mins
@@ -23,7 +22,7 @@ export class TokenRefresher implements ProviderMiddleware {
 
   private async doRefresh() {
     try {
-      await refreshIdToken();
+      // await refreshIdToken();
       localStorage.setItem(
         TokenRefresher.LAST_REFRESHED_KEY,
         String(Date.now())
