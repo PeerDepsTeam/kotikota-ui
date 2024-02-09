@@ -23,7 +23,7 @@ const ROUTER = createBrowserRouter([
     element: <SignupPage />,
   },
   {
-    path: "posts/:id/start",
+    path: "posts/:id/launch",
     element: <CreatePostPage />,
   },
 ]);
