@@ -1,3 +1,3 @@
-# Blogify 📑✨
+# Kokikota  💰✨
 
 Let's kotikota
