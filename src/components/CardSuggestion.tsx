@@ -1,37 +1,38 @@
 import {FC} from "react";
 import {Card, CardContent} from "./shadcn-ui/card";
 import {Button} from "./shadcn-ui/button";
-import tsunami from "../assets/images/tsunami.png";
+import {Post} from "@/services/api/gen";
 
-export const CardSuggestion: FC = () => {
+type CardSuggProps = {
+  post: Post;
+};
+export const CardSuggestion: FC<CardSuggProps> = ({post}) => {
+  const formattedDate = post?.creationDate
+    ? new Date(creationDate).getDate()
+    : "";
   return (
-    <Card className=" w-[314px] overflow-hidden rounded-lg">
-      <img
-        alt="Tsunami in Malika"
-        className="h-48 w-full object-cover"
-        height="200"
-        src={tsunami}
-        style={{
-          aspectRatio: "314/200",
-          objectFit: "cover",
-        }}
-        width="314"
-      />
-      <CardContent className="p-4">
-        <div className="flex flex-wrap justify-between">
-          <div className="flex items-center  justify-center text-xs text-gray-500">
-            June 27, 2021
+    <Card className="mb-8 w-[280px] overflow-hidden rounded-lg">
+      <div className="relative h-48">
+        <img
+          alt="Tsunami in Malika"
+          className="absolute inset-0 h-full w-full rounded-t-lg object-cover"
+          src={`data:image/jpeg;base64,${post?.thumbnail}`}
+        />
+        <div className="absolute bottom-0 left-0 bg-black bg-opacity-50 px-4 py-2 text-white">
+          <div className="text-xl font-semibold">
+            <a
+              href={`/posts/${post.id}`}
+              className="transform transition-all duration-300 hover:scale-110 hover:text-primary"
+            >
+              {post?.title}
+            </a>
           </div>
-          <div className="flex items-center justify-center text-xs text-gray-500">
-            1,099 donations
-          </div>
+          <div className="text-sm">{formattedDate}</div>
+          <div className="text-xs">{post?.amount_required}</div>
         </div>
-
-        <div className="mt-2 text-lg font-bold">Tsunami in Malika</div>
-        <p className="mt-1 text-sm text-gray-700">
-          Emergency! A tsunami has just hit Malika, Tarasudi District. Help our
-          affected brothers and sisters.
-        </p>
+      </div>
+      <CardContent className="p-4">
+        <div className="text-sm text-gray-700">{post?.description}</div>
         <div className="mt-4 flex items-center justify-between">
           <Button
             className="rounded bg-primary px-4 py-2 text-white hover:bg-secondary"
@@ -39,14 +40,14 @@ export const CardSuggestion: FC = () => {
           >
             Donate now
           </Button>
-          <MessageSquareIcon className="text-gray-500" />
+          <MessageSquareIcon />
         </div>
       </CardContent>
     </Card>
   );
 };
 
-function MessageSquareIcon({className}: {className: string}) {
+const MessageSquareIcon: FC = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -58,9 +59,8 @@ function MessageSquareIcon({className}: {className: string}) {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={className}
     >
       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
     </svg>
   );
-}
+};

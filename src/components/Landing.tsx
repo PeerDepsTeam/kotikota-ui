@@ -17,7 +17,7 @@ export const Landing: FC = () => {
           </p>
           <div className="flex justify-center space-x-4">
             <a href="/login">
-              <button className="rounded-md bg-blue-600 px-6 py-3 shadow-lg hover:bg-blue-700">
+              <button className="rounded-md bg-primary px-6 py-3 shadow-lg hover:bg-blue-700">
                 Donate now
               </button>
             </a>
