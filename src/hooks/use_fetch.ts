@@ -1,8 +1,11 @@
 import {useCallback, useEffect, useState} from "react";
 import {useLoading} from "@/hooks/use_loading.ts";
 
-export const useFetch = <T>(fetch: () => Promise<T>) => {
-  const [data, setData] = useState<T | null>(null);
+export const useFetch = <T>(
+  fetch: () => Promise<T>,
+  defaultValue?: T | undefined
+) => {
+  const [data, setData] = useState(defaultValue);
   const {queue, isLoading} = useLoading("fetch_data");
   const [error, setError] = useState<any>();
 
