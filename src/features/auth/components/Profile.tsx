@@ -22,10 +22,10 @@ const Profile: FC<ProfileProps> = ({user}) => {
             w-full flex-col items-center justify-center 
             space-y-10 border-none shadow-none"
           >
-            <Avatar>
+            <Avatar className="h-[10rem] w-[10rem]">
               <AvatarImage src={`data:image/jpeg;base64,${user?.photo}`} />
               <AvatarFallback>
-                <User2 className="h-20 w-20" />
+                <User2 className="h-[10rem] w-[10rem]" />
               </AvatarFallback>
             </Avatar>
             <div

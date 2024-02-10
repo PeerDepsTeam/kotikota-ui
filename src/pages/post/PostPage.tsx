@@ -1,36 +1,23 @@
-import {FC, useEffect, useState} from "react";
+import {FC} from "react";
 import {useParams} from "react-router-dom";
 import {Layout} from "@/layout";
 import {PostCard} from "@/features/post/Post";
-import {useToast} from "@/hooks";
+import {useFetch} from "@/hooks";
 import {PostProvider} from "@/services/api";
-import {Post} from "@/services/api/gen";
+import {Icons} from "@/components/common/icons.tsx";
 
 export const PostPage: FC = () => {
-  const [post, setPost] = useState<Post>();
-
-  const toast = useToast();
   const {id} = useParams();
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const data = await PostProvider.getById(id);
-        setPost(data);
-      } catch (_e) {
-        toast({
-          variant: "destructive",
-          message: "Unable to fetch post.",
-        });
-      }
-    };
-    if (id) {
-      void fetchPost();
-    }
-  }, [id]);
+  const {data, isLoading} = useFetch(() => PostProvider.getById(id!));
+
   return (
     <Layout>
-      <PostCard post={post} />
+      {isLoading || !data ? (
+        <Icons.spinner className="h-6 w-6 animate-spin" />
+      ) : (
+        <PostCard post={data} />
+      )}
     </Layout>
   );
 };

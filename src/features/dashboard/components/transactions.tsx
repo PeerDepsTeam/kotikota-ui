@@ -6,6 +6,7 @@ import {
   UserSexEnum,
 } from "@/services/api/gen";
 import {money, toMinors} from "@/lib/money.ts";
+import {Avatar, AvatarImage} from "@/components/shadcn-ui/avatar.tsx";
 
 export interface TransactionsProps {
   fund: FundsRaised;
@@ -54,11 +55,16 @@ export const Transactions: FC<TransactionsProps> = ({fund}) => {
 };
 
 const Transaction: FC<{payment: Payment}> = ({payment}) => {
+  const {from} = payment;
   return (
     <div className="flex cursor-pointer items-center justify-between space-x-2 border border-gray-100 p-4 hover:bg-gray-50">
-      <div className="w-[8rem] rounded bg-purple-600 p-3 text-center font-medium text-white">
-        {payment.payment_type}
-      </div>
+      {from?.photo && (
+        <Avatar>
+          <AvatarImage src={`data:image/jpeg;base64,${from?.photo}`} />
+        </Avatar>
+      )}
+      <div className="font-bold">{payment.from?.username}</div>
+
       <div className="ml-4 space-y-1">
         <p className="text-md font-bold leading-none">{payment.label}</p>
         <p className="text-md text-muted-foreground">{payment.reference}</p>
