@@ -32,8 +32,8 @@ export const Login: FC = () => {
   const login: AuthWith<void> = async (provider) => {
     try {
       const whoami = await queue(async () => {
-        await loginWith(provider);
-        return AuthProvider.login();
+        const credential = await loginWith(provider);
+        return AuthProvider.login(credential);
       });
       store.setUser(whoami);
       navigate("/profile");

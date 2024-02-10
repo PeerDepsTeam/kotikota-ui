@@ -11,7 +11,7 @@ export const RedirectAuthenticated: FC<PropsWithChildren> = ({children}) => {
 
   useEffect(() => {
     if (user) {
-      navigate(`/users/${user.id}`);
+      navigate("/profile");
     }
   }, [navigate, user]);
 

@@ -30,9 +30,12 @@ export interface AuthProvider {
 }
 
 export const AuthProvider = new (class Provider implements AuthProvider {
-  async login(): Promise<User> {
+  async login(credential: Auth.UserCredential): Promise<User> {
     // FIXME: remove {} as any when spec is updated
-    return SecurityProvider.signIn({} as any);
+    return SecurityProvider.signIn({
+      provider_id: credential.user.uid,
+      email: credential.user.email!,
+    });
   }
 
   async register(user: SignUp): Promise<User> {
