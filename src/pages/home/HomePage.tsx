@@ -4,6 +4,7 @@ import {PaginationCustom} from "@/components/common/PaginationCustom";
 import {Badge} from "@/components/shadcn-ui/badge";
 import {Button} from "@/components/shadcn-ui/button";
 import {Input} from "@/components/shadcn-ui/input";
+import {CardPostPopular} from "@/components/CardPostPopular.tsx";
 import {FC} from "react";
 
 export const HomePage: FC = () => {
@@ -32,61 +33,65 @@ export const HomePage: FC = () => {
         </div>
         <div className="flex flex-wrap items-center justify-center gap-4 py-4">
           <Badge
-            variant="default"
+            variant="outline"
             className="hover:bg-secondary hover:text-white"
           >
             Disaster
           </Badge>
           <Badge
-            variant="default"
+            variant="outline"
             className="hover:bg-secondary hover:text-white"
           >
             Children
           </Badge>
           <Badge
-            variant="default"
+            variant="outline"
             className="hover:bg-secondary hover:text-white"
           >
             Food Crisis
           </Badge>
           <Badge
-            variant="default"
+            variant="outline"
             className="hover:bg-secondary hover:text-white"
           >
             Health
           </Badge>
           <Badge
-            variant="default"
+            variant="outline"
             className="hover:bg-secondary hover:text-white"
           >
             Sanitation
           </Badge>
           <Badge
-            variant="default"
+            variant="outline"
             className="hover:bg-secondary hover:text-white"
           >
             Animal
           </Badge>
           <Badge
-            variant="default"
+            variant="outline"
             className="hover:bg-secondary hover:text-white"
           >
             Pandemic
           </Badge>
           <Badge
-            variant="default"
+            variant="outline"
             className="hover:bg-secondary hover:text-white"
           >
             War Crisis
           </Badge>
         </div>
-        <div className=" flex flex-wrap items-center justify-evenly gap-4 pb-4">
-          <CardSuggestion />
-          <CardSuggestion />
-          <CardSuggestion />
-          <CardSuggestion />
+        <div className="mx-auto my-8 max-w-4xl">
+          <div className="grid grid-cols-1 gap-8">
+            <CardPostPopular />
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <CardSuggestion />
+              <CardSuggestion />
+              <CardSuggestion />
+            </div>
+            <PaginationCustom />
+          </div>
         </div>
-        <PaginationCustom />
       </div>
     </>
   );

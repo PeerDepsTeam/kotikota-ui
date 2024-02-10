@@ -5,33 +5,24 @@ import tsunami from "../assets/images/tsunami.png";
 
 export const CardSuggestion: FC = () => {
   return (
-    <Card className=" w-[314px] overflow-hidden rounded-lg">
-      <img
-        alt="Tsunami in Malika"
-        className="h-48 w-full object-cover"
-        height="200"
-        src={tsunami}
-        style={{
-          aspectRatio: "314/200",
-          objectFit: "cover",
-        }}
-        width="314"
-      />
-      <CardContent className="p-4">
-        <div className="flex flex-wrap justify-between">
-          <div className="flex items-center  justify-center text-xs text-gray-500">
-            June 27, 2021
-          </div>
-          <div className="flex items-center justify-center text-xs text-gray-500">
-            1,099 donations
-          </div>
+    <Card className="mb-8 w-[280px] overflow-hidden rounded-lg">
+      <div className="relative h-48">
+        <img
+          alt="Tsunami in Malika"
+          className="absolute inset-0 h-full w-full rounded-t-lg object-cover"
+          src={tsunami}
+        />
+        <div className="absolute bottom-0 left-0 bg-black bg-opacity-50 px-4 py-2 text-white">
+          <div className="text-xl font-semibold">Tsunami in Malika</div>
+          <div className="text-sm">June 27, 2021</div>
+          <div className="text-xs">1,099 donations</div>
         </div>
-
-        <div className="mt-2 text-lg font-bold">Tsunami in Malika</div>
-        <p className="mt-1 text-sm text-gray-700">
+      </div>
+      <CardContent className="p-4">
+        <div className="text-sm text-gray-700">
           Emergency! A tsunami has just hit Malika, Tarasudi District. Help our
           affected brothers and sisters.
-        </p>
+        </div>
         <div className="mt-4 flex items-center justify-between">
           <Button
             className="rounded bg-primary px-4 py-2 text-white hover:bg-secondary"
