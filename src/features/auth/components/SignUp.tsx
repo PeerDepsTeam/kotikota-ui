@@ -90,7 +90,7 @@ export const Signup: FC = () => {
 
   return (
     <RedirectAuthenticated>
-      <div className="flex w-[70rem] items-center justify-center border-none shadow-none">
+      <div className="flex h-full w-full items-center justify-center border-none shadow-none">
         <Card className="flex items-center justify-center border-none p-8">
           <div className="flex flex-row items-center gap-20">
             <StepperView step="signup-with">

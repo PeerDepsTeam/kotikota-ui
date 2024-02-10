@@ -6,6 +6,8 @@ import {Button} from "@/components/common/button";
 import {FacebookShareButton, TwitterShareButton} from "react-share";
 import {Post} from "@/services/api/gen";
 import {Reader} from "../wisiwig";
+import {useAuthStore} from "@/features/auth";
+import {useNavigate} from "react-router-dom";
 
 export interface PostProps {
   post: Post | undefined;
@@ -13,6 +15,11 @@ export interface PostProps {
 
 export const PostCard: FC<PostProps> = ({post}) => {
   const url = "kotikota.vercel.app/posts/" + post?.id;
+  const auth = useAuthStore();
+
+  const isAuthenticated = auth.user != null;
+  const navigate = useNavigate();
+
   return (
     <Layout>
       <div
@@ -90,7 +97,13 @@ export const PostCard: FC<PostProps> = ({post}) => {
               </div>
 
               <div className="flex justify-between ">
-                <Button>Donate</Button>
+                {isAuthenticated && (
+                  <Button
+                    onClick={() => navigate(`/posts/${post?.id}/payments`)}
+                  >
+                    Donate
+                  </Button>
+                )}
                 <span className="flex justify-between">
                   <div className="mx-2 flex items-center rounded-[8px] p-2">
                     <FacebookShareButton url={url}>
