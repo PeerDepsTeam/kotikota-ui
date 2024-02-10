@@ -89,26 +89,6 @@ export interface Category {
 /**
  *
  * @export
- * @interface Category
- */
-export interface Category {
-  /**
-   *
-   * @type {string}
-   * @memberof Category
-   */
-  id?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Category
-   */
-  label?: string;
-}
-
-/**
- *
- * @export
  * @interface Exception
  */
 export interface Exception {
@@ -388,6 +368,12 @@ export interface SignUp {
    * @type {string}
    * @memberof SignUp
    */
+  firebase_id?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof SignUp
+   */
   first_name?: string;
   /**
    *
@@ -484,6 +470,12 @@ export interface User {
    * @memberof User
    */
   last_name?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof User
+   */
+  firebase_id?: string;
   /**
    *
    * @type {string}
