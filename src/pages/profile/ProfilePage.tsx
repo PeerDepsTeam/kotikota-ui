@@ -21,7 +21,7 @@ export const ProfilePage: FC = () => {
 
   return (
     <Layout>
-      <div className="mx-[2.8rem] h-full pt-[2.8rem] md:mx-[11rem] mt-0">
+      <div className="mx-[2.8rem] mt-0 h-full pt-[2.8rem] md:mx-[11rem]">
         <Profile user={user} />
       </div>
     </Layout>
