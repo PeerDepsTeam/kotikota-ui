@@ -1,5 +1,6 @@
 import {NavBar} from "@/layout";
-import React, {FC} from "react";
+import { FC } from "react";
+
 
 export const Landing: FC = () => {
   return (
@@ -38,10 +39,9 @@ export const Landing: FC = () => {
   );
 };
 
-function PlayCircleIcon(props) {
+function PlayCircleIcon({className}: {className:string}) {
   return (
     <svg
-      {...props}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
@@ -51,6 +51,7 @@ function PlayCircleIcon(props) {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      className={className}
     >
       <circle cx="12" cy="12" r="10" />
       <polygon points="10 8 16 12 10 16 10 8" />
