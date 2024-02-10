@@ -3,6 +3,7 @@ import mvola from "@/assets/images/mvola.jpg";
 import airtel from "@/assets/images/airtel.jpg";
 import orange from "@/assets/images/orangemoney.png";
 import mastercard from "@/assets/images/mastercard.png";
+import {PrimitiveImageProps} from "@radix-ui/react-avatar";
 
 type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -17,9 +18,9 @@ export const Icons = {
       viewBox="0 0 24 24"
     >
       <path
-        fill-rule="evenodd"
+        fillRule="evenodd"
         d="M15 9.7h4a2 2 0 0 1 1.6.9 2 2 0 0 1 .3 1.8l-2.4 7.2c-.3.9-.5 1.4-1.9 1.4-2 0-4.2-.7-6.1-1.3L9 19.3V9.5A32 32 0 0 0 13.2 4c.1-.4.5-.7.9-.9h1.2c.4.1.7.4 1 .7l.2 1.3L15 9.7ZM4.2 10H7v8a2 2 0 1 1-4 0v-6.8c0-.7.5-1.2 1.2-1.2Z"
-        clip-rule="evenodd"
+        clipRule="evenodd"
       />
     </svg>
   ),
@@ -33,9 +34,9 @@ export const Icons = {
       viewBox="0 0 24 24"
     >
       <path
-        fill-rule="evenodd"
+        fillRule="evenodd"
         d="M9 14.3H5a2 2 0 0 1-1.6-.9 2 2 0 0 1-.3-1.8l2.4-7.2C5.8 3.5 6 3 7.4 3c2 0 4.2.7 6.1 1.3l1.4.4v9.8a32 32 0 0 0-4.2 5.5c-.1.4-.5.7-.9.9a1.7 1.7 0 0 1-2.1-.7c-.2-.4-.3-.8-.3-1.3L9 14.3Zm10.8-.3H17V6a2 2 0 1 1 4 0v6.8c0 .7-.5 1.2-1.2 1.2Z"
-        clip-rule="evenodd"
+        clipRule="evenodd"
       />
     </svg>
   ),
@@ -88,14 +89,14 @@ export const Icons = {
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      stroke-width="1.5"
+      strokeWidth="1.5"
       stroke="currentColor"
       className="h-6 w-6"
       {...props}
     >
       <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
       />
     </svg>
@@ -105,14 +106,14 @@ export const Icons = {
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      stroke-width="1.5"
+      strokeWidth="1.5"
       stroke="currentColor"
       className="h-6 w-6"
       {...props}
     >
       <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
       />
     </svg>
@@ -122,28 +123,28 @@ export const Icons = {
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      stroke-width="1.5"
+      strokeWidth="1.5"
       stroke="currentColor"
       className="h-4 w-4"
       {...props}
     >
       <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
       />
     </svg>
   ),
-  mvola: (props: IconProps) => (
-    <img className="h-20 w-full" src={mvola} alt="mvola" />
+  mvola: (props: PrimitiveImageProps) => (
+    <img {...props} src={mvola} alt="mvola" />
   ),
-  airtel: (props: IconProps) => (
-    <img className="h-20 w-full" src={airtel} alt="mvola" />
+  airtel: (props: PrimitiveImageProps) => (
+    <img {...props} src={airtel} alt="mvola" />
   ),
-  orange: (props: IconProps) => (
-    <img className="h-20 w-full" src={orange} alt="mvola" />
+  orange: (props: PrimitiveImageProps) => (
+    <img {...props} src={orange} alt="mvola" />
   ),
-  mastercard: (props: IconProps) => (
-    <img className="h-20 w-full" src={mastercard} alt="mvola" />
+  mastercard: (props: PrimitiveImageProps) => (
+    <img {...props} src={mastercard} alt="mvola" />
   ),
 };

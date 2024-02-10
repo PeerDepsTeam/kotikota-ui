@@ -45,11 +45,7 @@ export const PaymentCard: FC = () => {
 
   const {id} = useParams();
   const toast = useToast();
-  const {
-    register,
-    handleSubmit,
-    formState: {errors},
-  } = useForm<InitiatePayment>({
+  const {register, handleSubmit} = useForm<InitiatePayment>({
     resolver: zodResolver(paymentRequestSchema),
   });
 
@@ -105,7 +101,7 @@ export const PaymentCard: FC = () => {
             defaultValue={PaymentRequestPaymentMethodEnum.MVOLA}
             {...register("payment_method")}
             className="flex justify-between"
-            onClick={(e) => setPaymentMethod(e.target?.value)}
+            onClick={(e) => setPaymentMethod((e.target as any).value)}
           >
             <div>
               <RadioGroupItem
