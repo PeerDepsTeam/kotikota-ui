@@ -53,8 +53,6 @@ export const PaymentCard: FC = () => {
     resolver: zodResolver(paymentRequestSchema),
   });
 
-  console.log("errors", errors);
-
   const [paymentMethod, setPaymentMethod] =
     useState<PaymentRequestPaymentMethodEnum>(
       PaymentRequestPaymentMethodEnum.VISA
