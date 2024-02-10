@@ -5,7 +5,7 @@ import {Toaster} from "@/components/shadcn-ui/toaster";
 import {TooltipProvider} from "@/components/shadcn-ui/tooltip.tsx";
 import {HomePage} from "@/pages/home";
 import {LoginPage, SignupPage} from "@/pages/auth";
-import {CreatePostPage} from "@/pages/post";
+import {PostPage} from "./pages/auth/PostPage";
 import "./index.css";
 import {ProfilePage} from "./pages/profile";
 
@@ -28,8 +28,8 @@ const ROUTER = createBrowserRouter([
     element: <SignupPage />,
   },
   {
-    path: "posts/:id/launch",
-    element: <CreatePostPage />,
+    path: "/posts",
+    element: <PostPage />,
   },
 ]);
 
