@@ -1,9 +1,16 @@
 import {FundsRaised, Post} from "@/services/api/gen";
-import {postingApi, DataProvider, DEFAULT_QUERY, Query} from "@/services/api";
+import {
+  postingApi,
+  DataProvider,
+  DEFAULT_QUERY,
+  Query,
+  userApi,
+} from "@/services/api";
 import {dataProvider} from "@/services/api/provider/middleware";
 
 export interface PostProvider extends DataProvider<Post> {
   getFundsRaised(pid: string): Promise<FundsRaised>;
+  getByUserId(uid: string, query: Query): Promise<Post[]>;
 }
 
 export const PostProvider: PostProvider = dataProvider({
@@ -19,6 +26,11 @@ export const PostProvider: PostProvider = dataProvider({
         query.params.categories
       )
     ).data;
+  },
+
+  async getByUserId(uid: string, query: Query) {
+    return (await userApi().getPostsByUserId(uid, query.page, query.pageSize))
+      .data;
   },
 
   async crupdateById(pid: string, update: Post): Promise<Post> {
