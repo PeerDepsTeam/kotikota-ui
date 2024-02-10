@@ -1,9 +1,14 @@
-import {FC} from "react";
+import {FC, useState} from "react";
 import {Card, CardContent, CardFooter} from "./shadcn-ui/card";
 import {Button} from "./shadcn-ui/button";
 import tsunami from "../assets/images/tsunami.png";
 
 export const CardPostPopular: FC = () => {
+  const [isFull, setIsFull] = useState(false);
+
+  const toggleFull = () => {
+    setIsFull(!isFull);
+  };
   return (
     <Card className="mb-8 h-80 w-full overflow-hidden rounded-lg">
       <div className="flex">
@@ -43,7 +48,7 @@ export const CardPostPopular: FC = () => {
             >
               Donate now
             </Button>
-            <MessageSquareIcon className="text-gray-500" />
+            <MessageSquareIcon />
           </CardFooter>
         </div>
       </div>
@@ -51,10 +56,9 @@ export const CardPostPopular: FC = () => {
   );
 };
 
-function MessageSquareIcon(props) {
+const MessageSquareIcon: FC = () => {
   return (
     <svg
-      {...props}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
@@ -68,4 +72,4 @@ function MessageSquareIcon(props) {
       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
     </svg>
   );
-}
+};
