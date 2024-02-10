@@ -9,6 +9,7 @@ import {CreatePostPage, PostPage} from "@/pages/post";
 import {PostListPage, PostProgressionPage} from "@/pages/dashboard";
 import {DashboardLayout} from "@/layout";
 import {ProfilePage} from "./pages/profile";
+import "./index.css";
 
 // eslint-disable-next-line react-refresh/only-export-components
 const ROUTER = createBrowserRouter([
