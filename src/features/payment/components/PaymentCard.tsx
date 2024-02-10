@@ -1,3 +1,6 @@
+import {FC, useEffect, useState} from "react";
+import {SubmitHandler, useForm} from "react-hook-form";
+import {useNavigate, useParams} from "react-router-dom";
 import {Icons} from "@/components/common/icons";
 import {Button} from "@/components/shadcn-ui/button";
 import {
@@ -25,13 +28,15 @@ import {
   Post,
 } from "@/services/api/gen";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {FC, useEffect, useState} from "react";
-import {SubmitHandler, useForm} from "react-hook-form";
-import {IntitiatePayment, paymentRequestSchema} from "..";
-import {useToast} from "@/hooks";
-import {useNavigate, useParams} from "react-router-dom";
+import {
+  InitiatePayment,
+  paymentRequestSchema,
+} from "@/features/payment/schema.ts";
 import {useAuthStore} from "@/features/auth";
+import {useToast} from "@/hooks";
 import {PaymentProvider, PostProvider} from "@/services/api";
+import {MOBILE_MONEYS} from "@/features/payment/constants.ts";
+import {nanoid} from "nanoid";
 
 export const PaymentCard: FC = () => {
   const user = useAuthStore((auth) => auth.user!);
@@ -40,17 +45,22 @@ export const PaymentCard: FC = () => {
 
   const {id} = useParams();
   const toast = useToast();
-  const {register, handleSubmit} = useForm<IntitiatePayment>({
+  const {
+    register,
+    handleSubmit,
+    formState: {errors},
+  } = useForm<InitiatePayment>({
     resolver: zodResolver(paymentRequestSchema),
   });
+
+  console.log("errors", errors);
+
   const [paymentMethod, setPaymentMethod] =
-    useState<PaymentRequestPaymentMethodEnum>();
-  let mobileMoney: PaymentRequestPaymentMethodEnum[] = [
-    PaymentRequestPaymentMethodEnum.MVOLA,
-    PaymentRequestPaymentMethodEnum.AIRTEL_MONEY,
-    PaymentRequestPaymentMethodEnum.ORANGE_MONEY,
-  ];
-  let isMobileMoney: boolean = mobileMoney.includes(paymentMethod);
+    useState<PaymentRequestPaymentMethodEnum>(
+      PaymentRequestPaymentMethodEnum.VISA
+    );
+
+  const isMobileMoney = MOBILE_MONEYS.includes(paymentMethod);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -63,10 +73,11 @@ export const PaymentCard: FC = () => {
     }
   }, [id]);
 
-  const paymentInitiation: SubmitHandler<IntitiatePayment> = async (data) => {
+  const initiatePayment: SubmitHandler<InitiatePayment> = async (data) => {
     try {
       const toCreate: PaymentRequest = {
         ...data,
+        id: nanoid(),
         post_id: id,
         from: user,
         to: post?.author,
@@ -76,13 +87,14 @@ export const PaymentCard: FC = () => {
     } catch (e) {
       toast({
         variant: "destructive",
-        message: "Somthing when wrong during payment process. please try again",
+        message:
+          "Something when wrong during payment process. please try again",
       });
     }
   };
 
   return (
-    <form onSubmit={handleSubmit((data) => paymentInitiation(data))}>
+    <form onSubmit={handleSubmit(initiatePayment)}>
       <Card className="m-auto w-1/2 border-none">
         <CardHeader>
           <CardTitle>Payment Method</CardTitle>

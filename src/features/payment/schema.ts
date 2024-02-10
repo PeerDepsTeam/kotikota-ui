@@ -1,7 +1,6 @@
 import {z} from "zod";
 
 export const paymentRequestSchema = z.object({
-  id: z.string().min(2),
   amount: z.any(),
   label: z.string(),
   reference: z.string(),
@@ -9,4 +8,4 @@ export const paymentRequestSchema = z.object({
   payment_type: z.any(),
 });
 
-export type IntitiatePayment = z.infer<typeof paymentRequestSchema>;
+export type InitiatePayment = z.infer<typeof paymentRequestSchema>;
