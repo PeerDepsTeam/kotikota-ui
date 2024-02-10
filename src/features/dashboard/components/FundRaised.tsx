@@ -1,4 +1,5 @@
 import {FC} from "react";
+import {ChevronUp} from "lucide-react";
 import {
   Card,
   CardContent,
@@ -10,18 +11,10 @@ import {money} from "@/lib/money.ts";
 
 export interface FundRaisedProps {
   post: Post;
+  fund: FundsRaised;
 }
 
-const mockFundRaised: FundsRaised = {
-  id: "mock_fund_raised1",
-  transactions: [],
-  amount: 3_000_000,
-};
-
-export const FundRaised: FC<FundRaisedProps> = ({post}) => {
-  // const {data: fund} = useFetch(() => PostProvider.getFundsRaised(post.id!));
-  const fund = mockFundRaised;
-
+export const FundRaised: FC<FundRaisedProps> = ({post, fund}) => {
   const remaining = (post.amount_required || 0) - (fund?.amount || 0);
   const percent = ((fund?.amount || 0) * 100) / (post.amount_required || 0);
 
@@ -33,16 +26,19 @@ export const FundRaised: FC<FundRaisedProps> = ({post}) => {
 
       <div className="flex w-full space-x-1">
         <Card
-          className="bg-green-500 text-white"
+          className="bg-purple-500 text-white"
           style={{width: `${percent}%`}}
         >
           <CardHeader>
-            <CardTitle>Funds raised</CardTitle>
+            <CardTitle className="flex items-center space-x-3">
+              <ChevronUp className="h-4 w-4 bg-green-500 text-green-500" />
+              Funds raised
+            </CardTitle>
           </CardHeader>
           <CardContent>{money(fund.amount)}</CardContent>
         </Card>
         <Card
-          className="bg-red-400 text-white"
+          className="bg-purple-400 text-white"
           style={{width: `${100 - percent}%`}}
         >
           <CardHeader>
