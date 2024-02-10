@@ -22,7 +22,7 @@ export const CardSuggestion: FC<CardSuggProps> = ({post}) => {
               href="post/[id]"
               className="transform transition-all duration-300 hover:scale-110 hover:text-primary"
             >
-              {post.title}
+              {post?.title}
             </a>
           </div>
           <div className="text-sm">{post?.creation_datetime?.getDate()}</div>
@@ -57,7 +57,6 @@ const MessageSquareIcon: FC = () => {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={className}
     >
       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
     </svg>
