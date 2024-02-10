@@ -91,17 +91,17 @@ const AuthenticatedHeader: FC = () => {
   };
 
   return (
-    <div
-      className="grid h-full w-full grid-cols-10 items-center gap-3 bg-white px-5"
+    <header
+      className="absolute left-0 right-0 top-0 flex items-center justify-between p-6"
       data-testid="authenticated-header"
     >
       <div className="logo w-30 h-15 col-span-1">
         <Link
           to="/"
           data-testid="KotiKota-logo"
-          className="font-logo text-2xl font-bold"
+          className="text-4xl font-bold tracking-tight text-primary"
         >
-          BLOGIFY
+          KOTIKOTA.
         </Link>
       </div>
       <div className="col-span-8 flex justify-center">
@@ -128,7 +128,7 @@ const AuthenticatedHeader: FC = () => {
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem className="mx-4 w-40">
-              <Link to={`/users/${`/users/user_id`}`}>
+              <Link to={"/profile"}>
                 <NavigationMenuLink
                   data-testid="profile-menu"
                   className={navigationMenuTriggerStyle()}
@@ -180,7 +180,7 @@ const AuthenticatedHeader: FC = () => {
           </TooltipContent>
         </Tooltip>
       </div>
-    </div>
+    </header>
   );
 };
 
