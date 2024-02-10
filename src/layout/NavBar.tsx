@@ -101,7 +101,7 @@ const AuthenticatedHeader: FC = () => {
           data-testid="KotiKota-logo"
           className="text-4xl font-bold tracking-tight text-primary"
         >
-          KOTIKOTA.
+          KOTIKOTA
         </Link>
       </div>
       <div className="col-span-8 flex justify-center">
@@ -128,7 +128,7 @@ const AuthenticatedHeader: FC = () => {
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem className="mx-4 w-40">
-              <Link to={"/profile"}>
+              <Link to={`/profile`}>
                 <NavigationMenuLink
                   data-testid="profile-menu"
                   className={navigationMenuTriggerStyle()}
@@ -143,7 +143,7 @@ const AuthenticatedHeader: FC = () => {
       <div className="col-span-1 flex justify-evenly align-middle">
         <Tooltip>
           <TooltipTrigger>
-            <Link to={"/profile"}>
+            <Link to={`/profile`}>
               <Avatar>
                 <AvatarImage data-testid="avatar" src="random_link" />
                 <AvatarFallback data-testid="avatar">
