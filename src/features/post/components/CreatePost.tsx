@@ -82,7 +82,6 @@ export const CreatePost: FC<CreatePostProps> = ({post}) => {
             onUpload={async (image) => {
               thumbnailRef.current = image;
             }}
-            className=""
             uploadText="upload post thumbnail"
           />
 

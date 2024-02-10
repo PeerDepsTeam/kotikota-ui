@@ -1,4 +1,4 @@
-import {FC} from "react";
+import {FC, useRef} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {format} from "date-fns";
@@ -49,6 +49,8 @@ import {cn} from "@/lib/utils.ts";
 import {useLoading, useToast} from "@/hooks";
 import "react-calendar/dist/Calendar.css";
 import {Card} from "@/components/shadcn-ui/card";
+import {ImageUpload} from "@/components/common/image-upload.tsx";
+import {toBase64} from "@/lib/file.ts";
 
 export const Signup: FC = () => {
   const authStore = useAuthStore();
@@ -71,13 +73,15 @@ export const Signup: FC = () => {
     }
   };
 
-  const createUser: SubmitHandler<User> = async (user) => {
+  const createUser = async (user: any, photo?: File) => {
     try {
+      const base64 = photo ? await toBase64(photo) : undefined;
       const whoami = await queue(() =>
         AuthProvider.register({
           ...(user as any),
           id: nanoid(),
           entrance_datetime: new Date(),
+          photo: base64,
         })
       );
       authStore.setUser(whoami);
@@ -217,7 +221,7 @@ const SignupWith: FC<SignupWithProps> = ({onSignup, isLoading}) => {
 };
 
 interface SignupUserFormProps {
-  onCreate(user: User): void;
+  onCreate(user: User, photo?: File): void;
   isLoading: boolean;
 }
 
@@ -231,6 +235,8 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
       provider_id: getCachedAuth().id ?? "",
     },
   });
+
+  const photoRef = useRef<File | undefined>(undefined);
 
   return (
     <Card className="float-right w-[45rem] flex-col items-baseline justify-center border-none shadow-none">
@@ -257,8 +263,18 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
       <Form {...form}>
         <form
           className="mb-6 flex flex-col items-center justify-center space-y-6"
-          onSubmit={form.handleSubmit(onCreate)}
+          onSubmit={form.handleSubmit((data) =>
+            onCreate(data, photoRef.current)
+          )}
         >
+          <ImageUpload
+            onUpload={async (image) => {
+              photoRef.current = image;
+            }}
+            className=""
+            uploadText="upload post thumbnail"
+          />
+
           <div className="flex w-[40rem] flex-col gap-6 sm:flex-row">
             <div className="mr-5 w-full sm:w-1/2">
               {/* First Name */}
@@ -267,7 +283,7 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
                 control={form.control}
                 render={({field}) => (
                   <FormItem className="text-md">
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel>Firstname</FormLabel>
                     <FormControl className="h-12">
                       <Input data-testid="first_name" {...field} />
                     </FormControl>
@@ -282,7 +298,7 @@ const SignupUserForm: FC<SignupUserFormProps> = ({onCreate, isLoading}) => {
                 control={form.control}
                 render={({field}) => (
                   <FormItem className="text-md">
-                    <FormLabel>Last name</FormLabel>
+                    <FormLabel>Lastname</FormLabel>
                     <FormControl className="h-12">
                       <Input data-testid="last_name" {...field} />
                     </FormControl>

@@ -23,7 +23,13 @@ const Profile: FC<ProfileProps> = ({user}) => {
             space-y-10 border-none shadow-none"
           >
             <Avatar className="h-[10rem] w-[10rem]">
-              <AvatarImage src={`data:image/jpeg;base64,${user?.photo}`} />
+              <AvatarImage
+                src={
+                  user.photo?.includes("data:image")
+                    ? user.photo
+                    : `data:image/jpeg;base64,${user?.photo}`
+                }
+              />
               <AvatarFallback>
                 <User2 className="h-[10rem] w-[10rem]" />
               </AvatarFallback>
