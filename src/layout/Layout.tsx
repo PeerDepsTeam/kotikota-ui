@@ -1,6 +1,7 @@
 import {FC, PropsWithChildren, ReactNode} from "react";
-import {NavBar} from "@/layout";
+import {Outlet} from "react-router-dom";
 import {clsx} from "clsx";
+import {NavBar} from "@/layout";
 
 type LayoutComponent = PropsWithChildren<{
   fixed: boolean;
@@ -55,5 +56,13 @@ export const Layout: FC<LayoutProps> = ({
       <HeaderWrapper fixed={fixed}>{header}</HeaderWrapper>
       <MainWrapper fixed={fixed}>{children}</MainWrapper>
     </>
+  );
+};
+
+export const DashboardLayout: FC<Omit<LayoutProps, "children">> = () => {
+  return (
+    <Layout>
+      <Outlet />
+    </Layout>
   );
 };

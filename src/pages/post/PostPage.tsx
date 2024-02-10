@@ -1,9 +1,9 @@
 import {FC, useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
 import {Layout} from "@/layout";
 import {PostCard} from "@/features/post/Post";
-import {useParams} from "react-router-dom";
-import {PostProvider} from "@/services/api";
 import {useToast} from "@/hooks";
+import {PostProvider} from "@/services/api";
 import {Post} from "@/services/api/gen";
 
 export const PostPage: FC = () => {
