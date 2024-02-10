@@ -2,21 +2,20 @@ import {FC, useState} from "react";
 import {Card, CardContent, CardFooter} from "./shadcn-ui/card";
 import {Button} from "./shadcn-ui/button";
 import tsunami from "../assets/images/tsunami.png";
+import {Post} from "@/services/api/gen";
+export interface PIPostSummary {
+  postId: Post;
+}
 
-export const CardPostPopular: FC = () => {
-  const [isFull, setIsFull] = useState(false);
-
-  const toggleFull = () => {
-    setIsFull(!isFull);
-  };
+export const CardPostPopular: FC<{post: PIPostSummary}> = ({post}) => {
   return (
     <Card className="mb-8 h-80 w-full overflow-hidden rounded-lg">
       <div className="flex">
         <div className="relative h-80 w-1/2">
           <img
-            alt="Tsunami in Malika"
+            alt={`${post?.postId.title}`}
             className="absolute inset-0 h-full w-full rounded-l-lg object-cover"
-            src={tsunami}
+            src={post?.postId?.thumbnail}
           />
         </div>
         <div className="flex w-1/2 flex-col justify-between rounded-r-lg bg-white bg-opacity-50 p-4 text-secondary">
@@ -26,19 +25,17 @@ export const CardPostPopular: FC = () => {
                 href="post/[id]"
                 className="transform transition-all duration-300 hover:scale-110 hover:text-primary"
               >
-                Tsunami in Malika
+                {post?.postId.title}
               </a>
             </div>
             <div className="mt-5 flex flex-row items-center justify-around">
-              <div className="text-sm">June 27, 2021</div>
-              <div className="text-xs">1,099 donations</div>
+              <div className="text-sm">
+                {post?.postId.creation_datetime?.getDate()}
+              </div>
+              <div className="text-xs">{post?.postId.amount_required}</div>
             </div>
             <div className="h-15 mt-1 text-sm text-gray-700">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Consectetur quas recusandae porro possimus nisi deserunt vero eum
-              dolore totam, sequi doloribus. Quisquam necessitatibus error ipsum
-              asperiores obcaecati, quae iusto vel quam molestiae ad sunt eaque
-              architecto explicabo molestias sapiente nihil harum eveniet
+              {post?.postId.description}
             </div>
           </CardContent>
           <CardFooter className="mt-4 flex items-center justify-between">

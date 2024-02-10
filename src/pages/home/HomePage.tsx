@@ -5,9 +5,48 @@ import {Badge} from "@/components/shadcn-ui/badge";
 import {Button} from "@/components/shadcn-ui/button";
 import {Input} from "@/components/shadcn-ui/input";
 import {CardPostPopular} from "@/components/CardPostPopular.tsx";
-import {FC} from "react";
+import {FC, useEffect, useState} from "react";
+import {Post} from "@/services/api/gen";
+import {PostProvider} from "@/services/api";
+import {useToast} from "@/hooks";
 
 export const HomePage: FC = () => {
+  const toast = useToast();
+  const [posts, setPosts] = useState([] as Post[]);
+  const [postId, setPostId] = useState<Post>();
+  useEffect(() => {
+    const fetchAllPosts = async () => {
+      try {
+        const post = await PostProvider.getMany({
+          page: 1,
+          pageSize: 3,
+          params: "",
+        });
+
+        setPosts(post);
+      } catch (error) {
+        toast({
+          variant: "destructive",
+          message: "",
+        });
+      }
+    };
+
+    try {
+      const fetchPost = async () => {
+        const id = await PostProvider.getById("1");
+        setPostId(id);
+      };
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        message: "",
+      });
+    }
+
+    void fetchAllPosts();
+  }, []);
+
   return (
     <>
       <div className=" max-w-screen-full mx-auto bg-white">
@@ -84,11 +123,10 @@ export const HomePage: FC = () => {
           </div>
           <div className="mx-auto my-8 max-w-4xl">
             <div className="grid grid-cols-1 gap-8">
-              <CardPostPopular />
+              {<CardPostPopular key={postId?.id} postId={postId} />}
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                <CardSuggestion />
-                <CardSuggestion />
-                <CardSuggestion />
+                {posts.length > 0 &&
+                  posts.map((posts) => <CardSuggestion post={posts} />)}
               </div>
               <PaginationCustom />
             </div>

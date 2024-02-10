@@ -2,15 +2,19 @@ import {FC} from "react";
 import {Card, CardContent} from "./shadcn-ui/card";
 import {Button} from "./shadcn-ui/button";
 import tsunami from "../assets/images/tsunami.png";
+import {Post} from "@/services/api/gen";
 
-export const CardSuggestion: FC = () => {
+type CardSuggProps = {
+  post: Post;
+};
+export const CardSuggestion: FC<CardSuggProps> = ({post}) => {
   return (
     <Card className="mb-8 w-[280px] overflow-hidden rounded-lg">
       <div className="relative h-48">
         <img
           alt="Tsunami in Malika"
           className="absolute inset-0 h-full w-full rounded-t-lg object-cover"
-          src={tsunami}
+          src={post?.thumbnail}
         />
         <div className="absolute bottom-0 left-0 bg-black bg-opacity-50 px-4 py-2 text-white">
           <div className="text-xl font-semibold">
@@ -21,8 +25,8 @@ export const CardSuggestion: FC = () => {
               Tsunami in Malika
             </a>
           </div>
-          <div className="text-sm">June 27, 2021</div>
-          <div className="text-xs">1,099 donations</div>
+          <div className="text-sm">{post?.creation_datetime?.getDate()}</div>
+          <div className="text-xs">{post?.amount_required}</div>
         </div>
       </div>
       <CardContent className="p-4">
