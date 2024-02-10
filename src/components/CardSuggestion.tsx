@@ -22,7 +22,7 @@ export const CardSuggestion: FC<CardSuggProps> = ({post}) => {
               href="post/[id]"
               className="transform transition-all duration-300 hover:scale-110 hover:text-primary"
             >
-              Tsunami in Malika
+              {post.title}
             </a>
           </div>
           <div className="text-sm">{post?.creation_datetime?.getDate()}</div>
@@ -30,10 +30,7 @@ export const CardSuggestion: FC<CardSuggProps> = ({post}) => {
         </div>
       </div>
       <CardContent className="p-4">
-        <div className="text-sm text-gray-700">
-          Emergency! A tsunami has just hit Malika, Tarasudi District. Help our
-          affected brothers and sisters.
-        </div>
+        <div className="text-sm text-gray-700">{post?.description}</div>
         <div className="mt-4 flex items-center justify-between">
           <Button
             className="rounded bg-primary px-4 py-2 text-white hover:bg-secondary"
