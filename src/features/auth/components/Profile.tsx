@@ -62,7 +62,9 @@ const Profile: FC<ProfileProps> = ({user}) => {
           {user?.birth_date && (
             <div className="mb-4 ml-2 text-left">
               <strong>Birthdate:</strong>{" "}
-              {user?.birth_date ? new Date(user.birth_date).toDateString() : "Not specified"}
+              {user?.birth_date
+                ? new Date(user.birth_date).toDateString()
+                : "Not specified"}
             </div>
           )}
 
