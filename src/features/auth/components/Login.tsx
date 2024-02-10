@@ -48,9 +48,9 @@ export const Login: FC = () => {
     <RedirectAuthenticated>
       <div className="flex flex-col items-center justify-center gap-2">
         <div className="flex flex-col items-center justify-center gap-[0.11rem]">
-          <div className="text-4xl font-medium items-center justify-center text-center mt-0">Login
-          <img src={Avatar} className="w-[11rem] h-[11rem]"/>
-        
+          <div className="mt-0 items-center justify-center text-center text-4xl font-medium">
+            Login
+            <img src={Avatar} className="h-[11rem] w-[11rem]" />
           </div>
           <p>
             Don't have an account yet ?{" "}
@@ -81,7 +81,7 @@ const LoginWith: FC<LoginWithProps> = ({isLoading, onLogin}) => {
     <>
       <Form {...form}>
         <form
-          className="flex w-[34rem] h-full flex-col items-center justify-center space-y-6"
+          className="flex h-full w-[34rem] flex-col items-center justify-center space-y-6"
           onSubmit={form.handleSubmit(onLogin)}
         >
           <div className="w-full">
@@ -143,7 +143,7 @@ const LoginWith: FC<LoginWithProps> = ({isLoading, onLogin}) => {
           <Button
             size="lg"
             variant="outline"
-            className="border-pink-400 rounded-lg w-full"
+            className="w-full rounded-lg border-pink-400"
             onClick={() => void onLogin(GoogleAuthProvider)}
           >
             <Icons.google className="mr-2 h-4 w-4" /> Sign in with Google
