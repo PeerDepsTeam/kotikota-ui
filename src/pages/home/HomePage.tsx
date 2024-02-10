@@ -9,6 +9,8 @@ import {FC, useEffect, useState} from "react";
 import {Post} from "@/services/api/gen";
 import {PostProvider} from "@/services/api";
 import {useToast} from "@/hooks";
+import {Partner} from "@/components/Partner";
+import {Footer} from "@/components/Footer";
 
 export const HomePage: FC = () => {
   const toast = useToast();
@@ -25,27 +27,36 @@ export const HomePage: FC = () => {
 
         setPosts(post);
       } catch (error) {
-        toast({
-          variant: "destructive",
-          message: "",
-        });
+        console.log("====================================");
+        console.log(error);
+        console.log("====================================");
+        // toast({
+        //   variant: "destructive",
+        //   message: "",
+        // });
       }
     };
+    void fetchAllPosts, [];
+  });
 
-    try {
-      const fetchPost = async () => {
+  useEffect(() => {
+    const fetchPost = async () => {
+      try {
         const id = await PostProvider.getById("1");
         setPostId(id);
-      };
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        message: "",
-      });
-    }
+      } catch (error) {
+        console.log("====================================");
+        console.log(error);
+        console.log("====================================");
 
-    void fetchAllPosts();
-  }, []);
+        // toast({
+        //   variant: "destructive",
+        //   message: "",
+        // });
+      }
+    };
+    void fetchPost(), [];
+  });
 
   return (
     <>
@@ -123,7 +134,7 @@ export const HomePage: FC = () => {
           </div>
           <div className="mx-auto my-8 max-w-4xl">
             <div className="grid grid-cols-1 gap-8">
-              {<CardPostPopular key={postId?.id} postId={postId} />}
+              {<CardPostPopular key={postId?.id} post={postId} />}
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {posts.length > 0 &&
                   posts.map((posts) => <CardSuggestion post={posts} />)}
@@ -132,6 +143,8 @@ export const HomePage: FC = () => {
             </div>
           </div>
         </section>
+        <Partner />
+        <Footer />
       </div>
     </>
   );

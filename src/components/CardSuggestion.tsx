@@ -1,7 +1,6 @@
 import {FC} from "react";
 import {Card, CardContent} from "./shadcn-ui/card";
 import {Button} from "./shadcn-ui/button";
-import tsunami from "../assets/images/tsunami.png";
 import {Post} from "@/services/api/gen";
 
 type CardSuggProps = {
@@ -14,7 +13,7 @@ export const CardSuggestion: FC<CardSuggProps> = ({post}) => {
         <img
           alt="Tsunami in Malika"
           className="absolute inset-0 h-full w-full rounded-t-lg object-cover"
-          src={post?.thumbnail}
+          src={`data:image/jpeg;base64,+ ${post?.thumbnail}`}
         />
         <div className="absolute bottom-0 left-0 bg-black bg-opacity-50 px-4 py-2 text-white">
           <div className="text-xl font-semibold">

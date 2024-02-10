@@ -1,10 +1,9 @@
-import {FC, useState} from "react";
+import {FC} from "react";
 import {Card, CardContent, CardFooter} from "./shadcn-ui/card";
 import {Button} from "./shadcn-ui/button";
-import tsunami from "../assets/images/tsunami.png";
 import {Post} from "@/services/api/gen";
 export interface PIPostSummary {
-  postId: Post;
+  post: Post;
 }
 
 export const CardPostPopular: FC<{post: PIPostSummary}> = ({post}) => {
@@ -13,9 +12,9 @@ export const CardPostPopular: FC<{post: PIPostSummary}> = ({post}) => {
       <div className="flex">
         <div className="relative h-80 w-1/2">
           <img
-            alt={`${post?.postId.title}`}
+            alt={`${post?.post.title}`}
             className="absolute inset-0 h-full w-full rounded-l-lg object-cover"
-            src={post?.postId?.thumbnail}
+            src={`data:image/jpeg;base64,+ ${post?.post.thumbnail}`}
           />
         </div>
         <div className="flex w-1/2 flex-col justify-between rounded-r-lg bg-white bg-opacity-50 p-4 text-secondary">
@@ -25,17 +24,17 @@ export const CardPostPopular: FC<{post: PIPostSummary}> = ({post}) => {
                 href="post/[id]"
                 className="transform transition-all duration-300 hover:scale-110 hover:text-primary"
               >
-                {post?.postId.title}
+                {post?.post.title}
               </a>
             </div>
             <div className="mt-5 flex flex-row items-center justify-around">
               <div className="text-sm">
-                {post?.postId.creation_datetime?.getDate()}
+                {post?.post.creation_datetime?.getDate()}
               </div>
-              <div className="text-xs">{post?.postId.amount_required}</div>
+              <div className="text-xs">{post?.post.amount_required}</div>
             </div>
             <div className="h-15 mt-1 text-sm text-gray-700">
-              {post?.postId.description}
+              {post?.post.description}
             </div>
           </CardContent>
           <CardFooter className="mt-4 flex items-center justify-between">
