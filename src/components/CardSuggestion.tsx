@@ -7,9 +7,6 @@ type CardSuggProps = {
   post: Post;
 };
 export const CardSuggestion: FC<CardSuggProps> = ({post}) => {
-  const formattedDate = post?.creationDate
-    ? new Date(creationDate).getDate()
-    : "";
   return (
     <Card className="mb-8 w-[280px] overflow-hidden rounded-lg">
       <div className="relative h-48">
@@ -27,7 +24,7 @@ export const CardSuggestion: FC<CardSuggProps> = ({post}) => {
               {post?.title}
             </a>
           </div>
-          <div className="text-sm">{formattedDate}</div>
+          <div className="text-sm">{post?.creation_datetime}</div>
           <div className="text-xs">{post?.amount_required}</div>
         </div>
       </div>

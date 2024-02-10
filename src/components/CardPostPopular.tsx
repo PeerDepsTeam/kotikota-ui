@@ -7,9 +7,6 @@ export interface PostType {
 }
 
 export const CardPostPopular: FC<PostType> = ({postId}) => {
-  const formattedDate = postId?.creationDate
-    ? new Date(creationDate).getDate()
-    : "";
   return (
     <Card className="mb-8 h-80 w-full overflow-hidden rounded-lg">
       <div className="flex">
@@ -31,7 +28,7 @@ export const CardPostPopular: FC<PostType> = ({postId}) => {
               </a>
             </div>
             <div className="mt-5 flex flex-row items-center justify-around">
-              <div className="text-sm">{formattedDate}</div>
+              <div className="text-sm">{postId?.creation_datetime}</div>
               <div className="text-xs">{postId?.amount_required}</div>
             </div>
             <div className="h-15 mt-1 text-sm text-gray-700">
