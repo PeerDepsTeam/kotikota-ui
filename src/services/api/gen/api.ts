@@ -200,6 +200,12 @@ export interface PaymentRequest {
   post_id?: string;
   /**
    *
+   * @type {Date}
+   * @memberof PaymentRequest
+   */
+  creation_datetime?: Date;
+  /**
+   *
    * @type {User}
    * @memberof PaymentRequest
    */
@@ -2014,6 +2020,64 @@ export const UserApiAxiosParamCreator = function (
     },
     /**
      *
+     * @summary Get all posts of a user
+     * @param {string} id
+     * @param {number} [page]
+     * @param {number} [pageSize]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPostsByUserId: async (
+      id: string,
+      page?: number,
+      pageSize?: number,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      assertParamExists("getPostsByUserId", "id", id);
+      const localVarPath = `/users/{id}/posts`.replace(
+        `{${"id"}}`,
+        encodeURIComponent(String(id))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "GET",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (page !== undefined) {
+        localVarQueryParameter["page"] = page;
+      }
+
+      if (pageSize !== undefined) {
+        localVarQueryParameter["page_size"] = pageSize;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
      * @summary Get user by identifier.
      * @param {string} id
      * @param {*} [options] Override http request option.
@@ -2100,6 +2164,43 @@ export const UserApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary Get all posts of a user
+     * @param {string} id
+     * @param {number} [page]
+     * @param {number} [pageSize]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getPostsByUserId(
+      id: string,
+      page?: number,
+      pageSize?: number,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Post>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getPostsByUserId(
+          id,
+          page,
+          pageSize,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["UserApi.getPostsByUserId"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
      * @summary Get user by identifier.
      * @param {string} id
      * @param {*} [options] Override http request option.
@@ -2161,6 +2262,25 @@ export const UserApiFactory = function (
     },
     /**
      *
+     * @summary Get all posts of a user
+     * @param {string} id
+     * @param {number} [page]
+     * @param {number} [pageSize]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPostsByUserId(
+      id: string,
+      page?: number,
+      pageSize?: number,
+      options?: any
+    ): AxiosPromise<Array<Post>> {
+      return localVarFp
+        .getPostsByUserId(id, page, pageSize, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     *
      * @summary Get user by identifier.
      * @param {string} id
      * @param {*} [options] Override http request option.
@@ -2197,6 +2317,27 @@ export class UserApi extends BaseAPI {
   ) {
     return UserApiFp(this.configuration)
       .crupdateUserById(id, user, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @summary Get all posts of a user
+   * @param {string} id
+   * @param {number} [page]
+   * @param {number} [pageSize]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UserApi
+   */
+  public getPostsByUserId(
+    id: string,
+    page?: number,
+    pageSize?: number,
+    options?: AxiosRequestConfig
+  ) {
+    return UserApiFp(this.configuration)
+      .getPostsByUserId(id, page, pageSize, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
