@@ -53,7 +53,12 @@ const AnonymousHeader: FC<AnonymousHeaderProps> = ({page}) => {
 
         {!page && (
           <>
-            <Button variant="outline" size="lg" className="h-9" asChild>
+            <Button
+              size="lg"
+              variant="outline"
+              className="h-9 text-black"
+              asChild
+            >
               <Link to="/login">Login</Link>
             </Button>
 
