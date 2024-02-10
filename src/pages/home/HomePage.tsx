@@ -84,7 +84,9 @@ export const HomePage: FC = () => {
           </div>
           <div className="mx-auto my-8 max-w-4xl">
             <div className="grid grid-cols-1 gap-8">
-              <CardPostPopular />
+              <a href="/posts/[id]" className="hover:z-10">
+                <CardPostPopular />
+              </a>
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <CardSuggestion />
                 <CardSuggestion />

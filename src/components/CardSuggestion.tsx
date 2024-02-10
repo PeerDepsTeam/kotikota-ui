@@ -13,7 +13,14 @@ export const CardSuggestion: FC = () => {
           src={tsunami}
         />
         <div className="absolute bottom-0 left-0 bg-black bg-opacity-50 px-4 py-2 text-white">
-          <div className="text-xl font-semibold">Tsunami in Malika</div>
+          <div className="text-xl font-semibold">
+            <a
+              href="post/[id]"
+              className="transform transition-all duration-300 hover:scale-110 hover:text-primary"
+            >
+              Tsunami in Malika
+            </a>
+          </div>
           <div className="text-sm">June 27, 2021</div>
           <div className="text-xs">1,099 donations</div>
         </div>

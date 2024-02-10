@@ -17,7 +17,12 @@ export const CardPostPopular: FC = () => {
         <div className="flex w-1/2 flex-col justify-between rounded-r-lg bg-white bg-opacity-50 p-4 text-secondary">
           <CardContent className="overflow-y-auto">
             <div className="text-center text-4xl font-semibold">
-              Tsunami in Malika
+              <a
+                href="post/[id]"
+                className="transform transition-all duration-300 hover:scale-110 hover:text-primary"
+              >
+                Tsunami in Malika
+              </a>
             </div>
             <div className="mt-5 flex flex-row items-center justify-around">
               <div className="text-sm">June 27, 2021</div>
