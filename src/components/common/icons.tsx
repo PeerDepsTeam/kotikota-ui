@@ -1,4 +1,8 @@
 import React from "react";
+import mvola from "@/assets/images/mvola.jpg";
+import airtel from "@/assets/images/airtel.jpg";
+import orange from "@/assets/images/orangemoney.png";
+import mastercard from "@/assets/images/mastercard.png";
 
 type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -129,5 +133,17 @@ export const Icons = {
         d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
       />
     </svg>
+  ),
+  mvola: (props: IconProps) => (
+    <img className="h-20 w-full" src={mvola} alt="mvola" />
+  ),
+  airtel: (props: IconProps) => (
+    <img className="h-20 w-full" src={airtel} alt="mvola" />
+  ),
+  orange: (props: IconProps) => (
+    <img className="h-20 w-full" src={orange} alt="mvola" />
+  ),
+  mastercard: (props: IconProps) => (
+    <img className="h-20 w-full" src={mastercard} alt="mvola" />
   ),
 };

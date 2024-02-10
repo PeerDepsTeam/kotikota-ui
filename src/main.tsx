@@ -9,7 +9,9 @@ import {CreatePostPage, PostPage} from "@/pages/post";
 import {PostListPage, PostProgressionPage} from "@/pages/dashboard";
 import {DashboardLayout} from "@/layout";
 import {ProfilePage} from "@/pages/profile";
+import {PaymentPage} from "@/pages/payment";
 import {Authenticated} from "@/features/auth";
+
 import "./index.css";
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -41,6 +43,10 @@ const ROUTER = createBrowserRouter([
   {
     path: "/posts/:id/launch",
     element: <CreatePostPage />,
+  },
+  {
+    path: "posts/:id/payments",
+    element: <PaymentPage />,
   },
   {
     path: "/dashboard",
