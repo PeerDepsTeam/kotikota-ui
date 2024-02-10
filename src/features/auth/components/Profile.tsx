@@ -59,10 +59,10 @@ const Profile: FC<ProfileProps> = ({user}) => {
             <strong>Email:</strong> {user?.email}
           </div>
 
-          {user.birth_date && (
+          {user?.birth_date && (
             <div className="mb-4 ml-2 text-left">
               <strong>Birthdate:</strong>{" "}
-              {new Date(user.birth_date).toDateString() || "Not specified"}
+              {user?.birth_date ? new Date(user.birth_date).toDateString() : "Not specified"}
             </div>
           )}
 
