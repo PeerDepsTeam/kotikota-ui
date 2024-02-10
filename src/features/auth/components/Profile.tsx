@@ -3,21 +3,21 @@ import {User} from "@/services/api/gen";
 import {Card} from "@/components/shadcn-ui/card";
 
 interface ProfileProps {
-  user: User;
+  user: User | null;
 }
 
 const Profile: FC<ProfileProps> = ({user}) => {
   return (
     <div className="h-scw-screen mt-0 flex w-[110%] items-center justify-center  overflow-hidden">
       <div className="grid h-[40rem] w-[70rem] grid-cols-2 gap-8 p-8 ">
-        <Card className="col-span-1 mb-5 flex flex-col items-start border-gray-50 text-start">
+        <Card className="col-span-1 mb-5 flex flex-col items-start border-gray-50 px-2 text-start">
           <Card
             className="col-span-1 mb-5 flex 
             w-full flex-col items-center justify-center 
             space-y-10 border-none shadow-none"
           >
             <img
-              src={user.photo}
+              src={`data:image/jpeg;base64,${user?.photo}`}
               alt="Profile"
               className="h-[220px] w-[220px]  items-center
                 rounded-full border-black object-cover "
@@ -30,13 +30,13 @@ const Profile: FC<ProfileProps> = ({user}) => {
             </div>
           </Card>
           <div className="mb-4 ml-2 mt-5 text-left">
-            <strong>Last Name:</strong> {user.last_name}
+            <strong>Lastname:</strong> {user?.last_name}
           </div>
           <div className="mb-4 ml-2 mt-5 text-left">
-            <strong>First Name:</strong> {user.first_name}
+            <strong>Firstname:</strong> {user?.first_name}
           </div>
           <div className="ml-2 mt-5 text-left">
-            <strong>Username:</strong> {user.username}
+            <strong>Username:</strong> {user?.username}
           </div>
         </Card>
 
@@ -46,32 +46,34 @@ const Profile: FC<ProfileProps> = ({user}) => {
               className="mb-2 w-[80%] rounded-lg border-2 border-violet-400 p-1
                 text-center text-lg font-light text-violet-400"
             >
-              Information Personnels
+              Other details
             </div>
           </Card>
           <div className="mb-4 ml-2 text-left">
-            <strong>Email:</strong> {user.email}
+            <strong>Email:</strong> {user?.email}
           </div>
           <div className="mb-4 ml-2 text-left">
-            <strong>Birth Date:</strong>{" "}
-            {user.birth_date ? user.birth_date.toDateString() : "Not specified"}
+            <strong>Birthdate:</strong>{" "}
+            {user?.birth_date
+              ? user.birth_date.toDateString()
+              : "Not specified"}
           </div>
           <div className="mb-4 ml-2 text-left">
-            <strong>Sex:</strong> {user.sex}
+            <strong>Sex:</strong> {user?.sex}
           </div>
           <Card className="col-span-1 mb-2 flex w-full flex-col items-center justify-center border-none shadow-none">
             <div
               className="mb-2 w-[80%] rounded-lg border-2 border-violet-400 p-1
                 text-center text-lg font-light text-violet-400"
             >
-              Other details
+              Summary
             </div>
           </Card>
           <div className="mb-4 ml-2 text-left">
-            <strong>Bio:</strong> {user.bio}
+            <strong>Bio:</strong> {user?.bio}
           </div>
           <div className="ml-2 text-left">
-            <strong>About:</strong> {user.about}
+            <strong>About:</strong> {user?.about}
           </div>
         </Card>
       </div>
