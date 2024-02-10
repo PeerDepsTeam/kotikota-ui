@@ -16,9 +16,9 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ["Rationale", "system-ui", "sans-serif"],
+      sans: ["Poppins", "sans-serif"],
       logo: ["Lilita One", "sans-serif"],
-      title: ["Oswald", "sans-serif"],
+      title: ["Poppins", "sans-serif"],
     },
     extend: {
       colors: {
