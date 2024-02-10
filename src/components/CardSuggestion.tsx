@@ -7,24 +7,27 @@ type CardSuggProps = {
   post: Post;
 };
 export const CardSuggestion: FC<CardSuggProps> = ({post}) => {
+  const formattedDate = post?.creationDate
+    ? new Date(creationDate).getDate()
+    : "";
   return (
     <Card className="mb-8 w-[280px] overflow-hidden rounded-lg">
       <div className="relative h-48">
         <img
           alt="Tsunami in Malika"
           className="absolute inset-0 h-full w-full rounded-t-lg object-cover"
-          src={`data:image/jpeg;base64,+ ${post?.thumbnail}`}
+          src={`data:image/jpeg;base64,${post?.thumbnail}`}
         />
         <div className="absolute bottom-0 left-0 bg-black bg-opacity-50 px-4 py-2 text-white">
           <div className="text-xl font-semibold">
             <a
-              href="post/[id]"
+              href={`/posts/${post.id}`}
               className="transform transition-all duration-300 hover:scale-110 hover:text-primary"
             >
               {post?.title}
             </a>
           </div>
-          <div className="text-sm">{post?.creation_datetime?.getDate()}</div>
+          <div className="text-sm">{formattedDate}</div>
           <div className="text-xs">{post?.amount_required}</div>
         </div>
       </div>

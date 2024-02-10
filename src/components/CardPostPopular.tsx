@@ -2,19 +2,22 @@ import {FC} from "react";
 import {Card, CardContent, CardFooter} from "./shadcn-ui/card";
 import {Button} from "./shadcn-ui/button";
 import {Post} from "@/services/api/gen";
-export interface PIPostSummary {
-  post: Post;
+export interface PostType {
+  postId: Post;
 }
 
-export const CardPostPopular: FC<{post: PIPostSummary}> = ({post}) => {
+export const CardPostPopular: FC<PostType> = ({postId}) => {
+  const formattedDate = postId?.creationDate
+    ? new Date(creationDate).getDate()
+    : "";
   return (
     <Card className="mb-8 h-80 w-full overflow-hidden rounded-lg">
       <div className="flex">
         <div className="relative h-80 w-1/2">
           <img
-            alt={`${post?.post.title}`}
+            alt={`${postId?.title}`}
             className="absolute inset-0 h-full w-full rounded-l-lg object-cover"
-            src={`data:image/jpeg;base64,+ ${post?.post.thumbnail}`}
+            src={`data:image/jpeg;base64,${postId?.thumbnail}`}
           />
         </div>
         <div className="flex w-1/2 flex-col justify-between rounded-r-lg bg-white bg-opacity-50 p-4 text-secondary">
@@ -24,17 +27,15 @@ export const CardPostPopular: FC<{post: PIPostSummary}> = ({post}) => {
                 href="post/[id]"
                 className="transform transition-all duration-300 hover:scale-110 hover:text-primary"
               >
-                {post?.post.title}
+                {postId?.title}
               </a>
             </div>
             <div className="mt-5 flex flex-row items-center justify-around">
-              <div className="text-sm">
-                {post?.post.creation_datetime?.getDate()}
-              </div>
-              <div className="text-xs">{post?.post.amount_required}</div>
+              <div className="text-sm">{formattedDate}</div>
+              <div className="text-xs">{postId?.amount_required}</div>
             </div>
             <div className="h-15 mt-1 text-sm text-gray-700">
-              {post?.post.description}
+              {postId?.description}
             </div>
           </CardContent>
           <CardFooter className="mt-4 flex items-center justify-between">

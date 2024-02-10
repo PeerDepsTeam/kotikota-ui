@@ -8,20 +8,22 @@ import {CardPostPopular} from "@/components/CardPostPopular.tsx";
 import {FC, useEffect, useState} from "react";
 import {Post} from "@/services/api/gen";
 import {PostProvider} from "@/services/api";
-import {useToast} from "@/hooks";
 import {Partner} from "@/components/Partner";
 import {Footer} from "@/components/Footer";
+import {useToast} from "@/components/shadcn-ui/use-toast";
+import {useParams} from "react-router-dom";
 
 export const HomePage: FC = () => {
   const toast = useToast();
   const [posts, setPosts] = useState([] as Post[]);
   const [postId, setPostId] = useState<Post>();
+  const {id} = useParams();
   useEffect(() => {
     const fetchAllPosts = async () => {
       try {
         const post = await PostProvider.getMany({
           page: 1,
-          pageSize: 3,
+          pageSize: 10,
           params: "",
         });
 
@@ -30,33 +32,31 @@ export const HomePage: FC = () => {
         console.log("====================================");
         console.log(error);
         console.log("====================================");
-        // toast({
-        //   variant: "destructive",
-        //   message: "",
-        // });
+        toast({
+          variant: "destructive",
+          message: "",
+        });
       }
     };
-    void fetchAllPosts, [];
+    fetchAllPosts(), [];
   });
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const id = await PostProvider.getById("1");
-        setPostId(id);
-      } catch (error) {
-        console.log("====================================");
-        console.log(error);
-        console.log("====================================");
-
-        // toast({
-        //   variant: "destructive",
-        //   message: "",
-        // });
+        const data = await PostProvider.getById(id);
+        setPostId(data);
+      } catch (_e) {
+        toast({
+          variant: "destructive",
+          message: "Unable to fetch post.",
+        });
       }
     };
-    void fetchPost(), [];
-  });
+    if (id) {
+      void fetchPost();
+    }
+  }, [id]);
 
   return (
     <>
@@ -134,10 +134,12 @@ export const HomePage: FC = () => {
           </div>
           <div className="mx-auto my-8 max-w-4xl">
             <div className="grid grid-cols-1 gap-8">
-              {<CardPostPopular key={postId?.id} post={postId} />}
+              {<CardPostPopular key={posts?.id} postId={posts} />}
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {posts.length > 0 &&
-                  posts.map((posts) => <CardSuggestion post={posts} />)}
+                  posts.map((posts) => (
+                    <CardSuggestion key={posts?.id} post={posts} />
+                  ))}
               </div>
               <PaginationCustom />
             </div>
