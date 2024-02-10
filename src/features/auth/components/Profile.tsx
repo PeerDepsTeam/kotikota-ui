@@ -29,14 +29,17 @@ const Profile: FC<ProfileProps> = ({user}) => {
               About the User
             </div>
           </Card>
-          <div className="mb-4 ml-2 mt-5 text-left">
-            <strong>Last Name:</strong> {user.last_name}
-          </div>
-          <div className="mb-4 ml-2 mt-5 text-left">
-            <strong>First Name:</strong> {user.first_name}
-          </div>
-          <div className="ml-2 mt-5 text-left">
-            <strong>Username:</strong> {user.username}
+          <div className="flex flex-col gap-4 w-full text-left">
+            <div className="mb-4 ml-2 mr-5 mt-5 text-left">
+              <strong className="mr-2">Last Name:</strong> 
+              <small className="text-sm">{user.last_name}</small>
+            </div>
+            <div className="mb-4 ml-2 mt-5 text-left">
+              <strong className="mr-2">First Name:</strong> <small className="text-sm">{user.first_name}</small>
+            </div>
+            <div className="ml-2 mt-5 text-left">
+              <strong className="mr-2">Username:</strong> <small className="text-sm">{user.username}</small>
+            </div>
           </div>
         </Card>
 
@@ -50,14 +53,14 @@ const Profile: FC<ProfileProps> = ({user}) => {
             </div>
           </Card>
           <div className="mb-4 ml-2 text-left">
-            <strong>Email:</strong> {user.email}
+            <strong className="mr-2">Email:</strong> <small className="text-sm">{user.email}</small>
           </div>
           <div className="mb-4 ml-2 text-left">
-            <strong>Birth Date:</strong>{" "}
-            {user.birth_date ? user.birth_date.toDateString() : "Not specified"}
+            <strong className="mr-2">Birth Date:</strong>{" "}
+            <small className="text-sm">{user.birth_date ? user.birth_date.toLocaleDateString() : "Not specified"}</small>
           </div>
           <div className="mb-4 ml-2 text-left">
-            <strong>Sex:</strong> {user.sex}
+            <strong className="mr-2">Sex:</strong> <small className="text-sm">{user.sex}</small>
           </div>
           <Card className="col-span-1 mb-2 flex w-full flex-col items-center justify-center border-none shadow-none">
             <div
@@ -68,10 +71,10 @@ const Profile: FC<ProfileProps> = ({user}) => {
             </div>
           </Card>
           <div className="mb-4 ml-2 text-left">
-            <strong>Bio:</strong> {user.bio}
+            <strong className="mr-2">Bio:</strong> <small className="text-sm">{user.bio}</small>
           </div>
           <div className="ml-2 text-left">
-            <strong>About:</strong> {user.about}
+            <strong className="mr-2">About:</strong> <small className="text-sm">{user.about}</small>
           </div>
         </Card>
       </div>
