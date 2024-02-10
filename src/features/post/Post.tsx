@@ -8,6 +8,7 @@ import {Post} from "@/services/api/gen";
 import {Reader} from "../wisiwig";
 import {useAuthStore} from "@/features/auth";
 import {useNavigate} from "react-router-dom";
+import {Chatbox} from "@/features/chatbox";
 
 export interface PostProps {
   post: Post | undefined;
@@ -171,6 +172,7 @@ export const PostCard: FC<PostProps> = ({post}) => {
               {post?.author?.first_name} {post?.author?.last_name}{" "}
             </p>
             <p className="overflow-hidden truncate">{post?.author?.about}</p>
+            <Chatbox user={post.author!} />
             <a className=" font-thin" href={post?.author?.email}>
               Contact this author
             </a>
