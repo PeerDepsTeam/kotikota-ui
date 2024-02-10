@@ -3,7 +3,6 @@ import {Icon} from "@iconify/react";
 import {Layout} from "@/layout";
 import {Icons} from "@/components/common/icons";
 import {Button} from "@/components/common/button";
-import pic from "@/assets/profile.jpg";
 import {FacebookShareButton, TwitterShareButton} from "react-share";
 import {Post} from "@/services/api/gen";
 import {Reader} from "../wisiwig";
