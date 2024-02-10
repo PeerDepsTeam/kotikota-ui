@@ -21,6 +21,7 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {Post} from "@/services/api/gen";
 import {PostProvider} from "@/services/api";
 import {useToast} from "@/hooks";
+import {toMinors} from "@/lib/money.ts";
 
 export interface CreatePostProps {
   post: Post;
@@ -36,15 +37,18 @@ export const CreatePost: FC<CreatePostProps> = ({post}) => {
   const createPost: SubmitHandler<CreatePostData> = async (data) => {
     try {
       const toCreate: Post = {
+        ...post,
         ...data,
+        amount_required: toMinors(data.amount_required),
         content:
           editor?.getContent() ??
           `<h1>Planning to launch ${data.title} project</h1>`,
         creation_datetime: new Date(),
         categories: [],
       };
-      await PostProvider.crupdate(toCreate);
+      await PostProvider.crupdateById(toCreate.id!, toCreate);
     } catch (e) {
+      console.log(e);
       toast({
         variant: "destructive",
         message: "Unable to create post. please try again",
