@@ -118,7 +118,7 @@ const AuthenticatedHeader: FC = () => {
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem className="mx-4 w-40">
-              <Link to="/posts">
+              <Link to="/dashboard/posts">
                 <NavigationMenuLink
                   data-testid="about-menu"
                   className={navigationMenuTriggerStyle()}
@@ -143,7 +143,7 @@ const AuthenticatedHeader: FC = () => {
       <div className="col-span-1 flex justify-evenly align-middle">
         <Tooltip>
           <TooltipTrigger>
-            <Link to={`/users/user_id`}>
+            <Link to={"/profile"}>
               <Avatar>
                 <AvatarImage data-testid="avatar" src="random_link" />
                 <AvatarFallback data-testid="avatar">
