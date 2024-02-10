@@ -4,7 +4,7 @@ import {FC} from "react";
 import {useAuthStore} from "@/features/auth";
 
 export const ProfilePage: FC = () => {
-  const user = useAuthStore((auth) => auth.user);
+  const user = useAuthStore((auth) => auth.user!);
 
   return (
     <Layout>

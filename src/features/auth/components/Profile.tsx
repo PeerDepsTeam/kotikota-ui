@@ -1,9 +1,15 @@
 import {FC} from "react";
 import {User} from "@/services/api/gen";
 import {Card} from "@/components/shadcn-ui/card";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/shadcn-ui/avatar.tsx";
+import {User2} from "lucide-react";
 
 interface ProfileProps {
-  user: User | null;
+  user: User;
 }
 
 const Profile: FC<ProfileProps> = ({user}) => {
@@ -16,12 +22,12 @@ const Profile: FC<ProfileProps> = ({user}) => {
             w-full flex-col items-center justify-center 
             space-y-10 border-none shadow-none"
           >
-            <img
-              src={`data:image/jpeg;base64,${user?.photo}`}
-              alt="Profile"
-              className="h-[220px] w-[220px]  items-center
-                rounded-full border-black object-cover "
-            />
+            <Avatar>
+              <AvatarImage src={`data:image/jpeg;base64,${user?.photo}`} />
+              <AvatarFallback>
+                <User2 className="h-20 w-20" />
+              </AvatarFallback>
+            </Avatar>
             <div
               className="mb-5 w-[80%] rounded-lg border-2 border-violet-400 p-1
               text-center text-lg font-light text-violet-400"
@@ -52,12 +58,14 @@ const Profile: FC<ProfileProps> = ({user}) => {
           <div className="mb-4 ml-2 text-left">
             <strong>Email:</strong> {user?.email}
           </div>
-          <div className="mb-4 ml-2 text-left">
-            <strong>Birthdate:</strong>{" "}
-            {user?.birth_date
-              ? user.birth_date.toDateString()
-              : "Not specified"}
-          </div>
+
+          {user.birth_date && (
+            <div className="mb-4 ml-2 text-left">
+              <strong>Birthdate:</strong>{" "}
+              {new Date(user.birth_date).toDateString() || "Not specified"}
+            </div>
+          )}
+
           <div className="mb-4 ml-2 text-left">
             <strong>Sex:</strong> {user?.sex}
           </div>
