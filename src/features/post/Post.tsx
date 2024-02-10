@@ -5,22 +5,24 @@ import {Icons} from "@/components/common/icons";
 import {Button} from "@/components/common/button";
 import pic from "@/assets/profile.jpg";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
+import { Post } from "@/services/api/gen";
+import { Reader } from "../wisiwig";
 
-// export interface PostProps {
-//   post: PostType;
-// }
+export interface PostProps {
+  post: Post | undefined;
+}
 
-export const Post: FC = () => {
+export const PostCard: FC<PostProps> = ({ post }) => {
+  const url = "kotikota.vercel.app/posts/"+post?.id
   return (
     <Layout>
       <div
         data-testid="post-title"
         className="mb-4 mt-40 flex w-full justify-center p-11 text-center md:mt-20"
       >
-        <p className=" mt-16 font-title text-6xl "> Post Title</p>
-        {/* <p className="font-optical-sizing-auto normal font-title text-6xl font-bold">
-          {post.title}
-        </p> */}
+        <p className="font-optical-sizing-auto normal font-title text-6xl font-bold">
+          {post?.title}
+        </p>
       </div>
       <div className="flex w-full justify-center">
         <div
@@ -30,8 +32,7 @@ export const Post: FC = () => {
           <div className="col-span-3 flex items-center justify-center">
             <Icon icon="material-symbols-light:face-6" className="text-2xl" />
             <span className="mx-1">
-              {/* by <strong>{author?.username}</strong> */}
-              <p>By User 1 </p>
+              <strong>{post?.author?.username}</strong>
             </span>
           </div>
           <div className="col-span-2 flex items-center justify-center">
@@ -58,12 +59,14 @@ export const Post: FC = () => {
 
             <div className="">
               <img
-                src={pic}
+                src={`data:image/jpeg;base64,${post?.thumbnail}`}
                 alt=""
                 className=" m-auto mb-[5rem] h-[40rem] w-[70rem]"
               />
             </div>
-
+              <div className="mx-10">
+                <Reader>{post?.content!}</Reader>
+              </div>
             <div className=" flex justify-between">
               <div className="flex items-stretch justify-self-center">
                 <Button
@@ -91,14 +94,14 @@ export const Post: FC = () => {
                 <Button>Donate</Button>
                 <span className="flex justify-between">
                  <div className="mx-2 rounded-[8px] p-2 flex items-center">
-                      <FacebookShareButton  url="http://localhost:5173/posts">
+                      <FacebookShareButton  url={url}>
                         <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                           <path fill-rule="evenodd" d="M13.1 6H15V3h-1.9A4.1 4.1 0 0 0 9 7.1V9H7v3h2v10h3V12h2l.6-3H12V6.6a.6.6 0 0 1 .6-.6h.5Z" clip-rule="evenodd"/>
                         </svg>
                       </FacebookShareButton>
                  </div>
                  <div className="rounded-[8px] p-2 flex items-center">
-                  <TwitterShareButton  url="http://localhost:5173/posts">
+                  <TwitterShareButton  url={url}>
                       <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                         <path fill-rule="evenodd" d="M22 5.9c-.7.3-1.5.5-2.4.6a4 4 0 0 0 1.8-2.2c-.8.5-1.6.8-2.6 1a4.1 4.1 0 0 0-6.7 1.2 4 4 0 0 0-.2 2.5 11.7 11.7 0 0 1-8.5-4.3 4 4 0 0 0 1.3 5.4c-.7 0-1.3-.2-1.9-.5a4 4 0 0 0 3.3 4 4.2 4.2 0 0 1-1.9.1 4.1 4.1 0 0 0 3.9 2.8c-1.8 1.3-4 2-6.1 1.7a11.7 11.7 0 0 0 10.7 1A11.5 11.5 0 0 0 20 8.5V8a10 10 0 0 0 2-2.1Z" clip-rule="evenodd"/>
                       </svg>  
@@ -106,35 +109,6 @@ export const Post: FC = () => {
                  </div>
                 </span>
               </div>
-            </div>
-
-            <div data-testid="post-tags" className="mx-10 flex w-full py-10">
-              <span className="mr-2 font-thin">Tags : </span>
-              <div className="flex justify-evenly">
-                {/* {post.categories!.map((category, index) => (
-                  <CategoryBadge
-                    key={category.id}
-                    data-testid={`category-${index + 1}`}
-                    className="mx-1"
-                  >
-                    {category.label}
-                  </CategoryBadge>
-                ))} */}
-
-                <p className=" font-light">User 1 </p>
-              </div>
-            </div>
-            <div className="mx-10">
-              {/* {comments.map((comment, index) => (
-                <Comment key={index} comment={comment} />
-              ))}
-              {user && (
-                <AddComment
-                  postId={post?.id!}
-                  setIsRefresh={setIsRefresh}
-                  isRefresh={isRefresh}
-                />
-              )} */}
             </div>
           </div>
         </div>
@@ -149,25 +123,17 @@ export const Post: FC = () => {
             className=" col-span-2 flex justify-center"
           >
             <img
-              src={pic}
+              src={`data:image/jpeg;base64,${post?.author?.photo}`}
               className="m-auto h-[12.5rem] w-[12.5rem] rounded-md bg-white object-cover"
             />
           </div>
           <div className="container col-span-6 flex flex-col justify-center">
             {" "}
             <p className=" font-thin"> User 1</p>
-            {/* <Linkto={`/users/${author?.id || ""}`} */}
-            {/*                
-              className="mb-5 text-left font-title text-2xl hover:text-slate-700 focus:text-slate-200 active:font-semibold"> */}
-            {/* {author?.first_name} {author?.last_name} */}
-            {/* </Link> */}
-            {/* <p className="overflow-hidden truncate">{author?.about}</p> */}
-            {/* <Link */}
-            {/* //   to={`/users/${author?.id || ""}`} */}
-            {/* className=" my-3 underline hover:text-slate-700 focus:text-slate-700 active:font-semibold"
-            > */}
-            <u className=" font-thin">See more about this author</u>
-            {/* </Link> */}
+            <p className="mb-5 text-left font-title text-2xl hover:text-slate-700 focus:text-slate-200 active:font-semibold">
+            {post?.author?.first_name} {post?.author?.last_name} </p>
+            <p className="overflow-hidden truncate">{post?.author?.about}</p>
+            <a className=" font-thin" href={post?.author?.email}>Contact this author</a>
           </div>
         </div>
         <div className="col-span-1 h-[18.75rem]"></div>
