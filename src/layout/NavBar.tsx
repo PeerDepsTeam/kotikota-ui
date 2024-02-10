@@ -20,6 +20,7 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from "@/components/shadcn-ui/tooltip.tsx";
+import {logout} from "@/services/security";
 import {useLoading} from "@/hooks";
 
 export interface AnonymousHeaderProps {
@@ -28,62 +29,51 @@ export interface AnonymousHeaderProps {
 
 const AnonymousHeader: FC<AnonymousHeaderProps> = ({page}) => {
   return (
-    <header className="absolute left-0 right-0 top-0 flex items-center justify-between p-6">
-      <div className="flex items-center justify-start">
-        <div className="logo w-30 h-15 col-span-1">
-          <a
-            href="/"
-            data-testid="Kotikota-logo"
-            className="text-4xl font-bold tracking-tight text-primary"
-          >
-            KotiKota.
-          </a>
-        </div>
+    <div className="mx-auto my-0 flex h-full w-[95%] items-center justify-between bg-white">
+      <div className="logo w-30 h-15 col-span-1">
+        <a
+          href="#"
+          data-testid="blogify-logo"
+          className="text-4xl font-bold tracking-tight text-[#9288F8]"
+        >
+          KotiKota
+        </a>
       </div>
-      <nav className="flex items-center justify-end">
-        <ul className="flex space-x-4">
-          <li>
-            <div data-testid="auth-button" className="space-x-3">
-              {page === "sign_up" && (
-                <Button variant="outline" size="lg" className="h-9" asChild>
-                  <Link to="/login">Sign in</Link>
-                </Button>
-              )}
-              {page === "sign_in" && (
-                <Button size="lg" className="h-9" asChild>
-                  <Link to="/signup">Sign up</Link>
-                </Button>
-              )}
+      <div data-testid="auth-button" className="space-x-3">
+        {page === "sign_up" && (
+          <Button variant="outline" size="lg" className="h-9" asChild>
+            <Link to="/login">Sign in</Link>
+          </Button>
+        )}
+        {page === "sign_in" && (
+          <Button size="lg" className="h-9" asChild>
+            <Link to="/signup">Sign up</Link>
+          </Button>
+        )}
 
-              {!page && (
-                <>
-                  <Button
-                    size="lg"
-                    className="h-9 bg-slate-900 text-slate-200"
-                    asChild
-                  >
-                    <Link to="/login">Login</Link>
-                  </Button>
+        {!page && (
+          <>
+            <Button variant="outline" size="lg" className="h-9" asChild>
+              <Link to="/login">Login</Link>
+            </Button>
 
-                  <Button size="lg" className="h-9">
-                    <Link to="/signup">Sign up</Link>
-                  </Button>
-                </>
-              )}
-            </div>
-          </li>
-        </ul>
-      </nav>
-    </header>
+            <Button size="lg" className="h-9">
+              <Link to="/signup">Sign up</Link>
+            </Button>
+          </>
+        )}
+      </div>
+    </div>
   );
 };
 
 const AuthenticatedHeader: FC = () => {
   const {queue, isLoading} = useLoading("logout");
+  const authStore = useAuthStore();
 
   const _logout = async () => {
     await queue(async () => {
-      // await logout();
+      await logout();
       localStorage.clear();
       window.location.reload();
     });
@@ -97,7 +87,7 @@ const AuthenticatedHeader: FC = () => {
       <div className="logo w-30 h-15 col-span-1">
         <Link
           to="/"
-          data-testid="KotiKota-logo"
+          data-testid="blogify-logo"
           className="font-logo text-2xl font-bold"
         >
           BLOGIFY
@@ -127,7 +117,7 @@ const AuthenticatedHeader: FC = () => {
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem className="mx-4 w-40">
-              <Link to={`/users/${`/users/user_id`}`}>
+              <Link to={`/users/${authStore.user?.id}`}>
                 <NavigationMenuLink
                   data-testid="profile-menu"
                   className={navigationMenuTriggerStyle()}
@@ -142,7 +132,7 @@ const AuthenticatedHeader: FC = () => {
       <div className="col-span-1 flex justify-evenly align-middle">
         <Tooltip>
           <TooltipTrigger>
-            <Link to={`/users/user_id`}>
+            <Link to={`/users/${authStore.user?.id}`}>
               <Avatar>
                 <AvatarImage data-testid="avatar" src="random_link" />
                 <AvatarFallback data-testid="avatar">
