@@ -1,5 +1,5 @@
-import {NavBar} from "@/layout";
 import {FC} from "react";
+import {NavBar} from "@/layout";
 
 export const Landing: FC = () => {
   return (
@@ -22,8 +22,7 @@ export const Landing: FC = () => {
               </button>
             </a>
             <a
-              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley
-             "
+              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"
               target="_blank"
             >
               <button className="flex items-center rounded-md bg-white px-6 py-3 text-gray-800 shadow-lg hover:bg-gray-100">

@@ -36,7 +36,7 @@ export const Login: FC = () => {
         return AuthProvider.login();
       });
       store.setUser(whoami);
-      navigate(`/users/${whoami.id}`);
+      navigate("/profile");
     } catch (e) {
       toast({
         message: "Log in failed",
