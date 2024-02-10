@@ -8,7 +8,8 @@ import {LoginPage, SignupPage} from "@/pages/auth";
 import {CreatePostPage, PostPage} from "@/pages/post";
 import {PostListPage, PostProgressionPage} from "@/pages/dashboard";
 import {DashboardLayout} from "@/layout";
-import {ProfilePage} from "./pages/profile";
+import {ProfilePage} from "@/pages/profile";
+import {Authenticated} from "@/features/auth";
 import "./index.css";
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -23,7 +24,11 @@ const ROUTER = createBrowserRouter([
   },
   {
     path: "/profile",
-    element: <ProfilePage />,
+    element: (
+      <Authenticated>
+        <ProfilePage />
+      </Authenticated>
+    ),
   },
   {
     path: "/signup",
