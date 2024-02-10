@@ -21,9 +21,10 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {Post} from "@/services/api/gen";
 import {PostProvider} from "@/services/api";
 import {useToast} from "@/hooks";
-import {toMinors} from "@/lib/money.ts";
+import {money, toMinors} from "@/lib/money.ts";
 import {ImageUpload} from "@/components/common/image-upload.tsx";
 import {toBase64} from "@/lib/file.ts";
+import {useNavigate} from "react-router-dom";
 
 export interface CreatePostProps {
   post: Post;
@@ -33,6 +34,7 @@ export const CreatePost: FC<CreatePostProps> = ({post}) => {
   const [editor, setEditor] = useState<Editor | null>(null);
   const toast = useToast();
 
+  const navigate = useNavigate();
   const thumbnailRef = useRef<File | undefined>(undefined);
 
   const form = useForm<CreatePostData>({
@@ -47,7 +49,6 @@ export const CreatePost: FC<CreatePostProps> = ({post}) => {
       const toCreate: Post = {
         ...post,
         ...data,
-        amount_required: toMinors(data.amount_required),
         content:
           editor?.getContent() ??
           `<h1>Planning to launch ${data.title} project</h1>`,
@@ -56,6 +57,7 @@ export const CreatePost: FC<CreatePostProps> = ({post}) => {
         thumbnail,
       };
       await PostProvider.crupdateById(toCreate.id!, toCreate);
+      navigate(`/posts/${toCreate.id}`);
     } catch (e) {
       console.log(e);
       toast({
@@ -161,7 +163,7 @@ export const CreatePost: FC<CreatePostProps> = ({post}) => {
                         form.setValue("amount_required", 5_000);
                       }}
                     >
-                      5000$
+                      {money(5000)}
                     </Button>
                     <Button
                       className="bg-purple-400"
@@ -169,7 +171,7 @@ export const CreatePost: FC<CreatePostProps> = ({post}) => {
                         form.setValue("amount_required", 10_000);
                       }}
                     >
-                      10.000$
+                      {money(10_000)}
                     </Button>
                     <Button
                       className="bg-purple-400"
@@ -177,7 +179,7 @@ export const CreatePost: FC<CreatePostProps> = ({post}) => {
                         form.setValue("amount_required", 50_000);
                       }}
                     >
-                      50.000$
+                      {money(50_000)}
                     </Button>
                   </FormDescription>
                 </FormItem>

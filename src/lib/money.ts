@@ -10,4 +10,4 @@ export const toMinors = (amount = 0): number =>
   isNaN(+amount * 100) ? 0 : +amount * 100;
 
 export const toMajors = (amount = 0): number =>
-  isNaN(+amount / 100) ? 0 : +amount / 100;
+  isNaN(+amount / 1) ? 0 : +amount / 1;
