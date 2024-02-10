@@ -42,15 +42,27 @@ const ROUTER = createBrowserRouter([
   },
   {
     path: "/posts/:id/launch",
-    element: <CreatePostPage />,
+    element: (
+      <Authenticated>
+        <CreatePostPage />
+      </Authenticated>
+    ),
   },
   {
     path: "posts/:id/payments",
-    element: <PaymentPage />,
+    element: (
+      <Authenticated>
+        <PaymentPage />
+      </Authenticated>
+    ),
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <Authenticated>
+        <DashboardLayout />
+      </Authenticated>
+    ),
     children: [
       {
         path: "posts",

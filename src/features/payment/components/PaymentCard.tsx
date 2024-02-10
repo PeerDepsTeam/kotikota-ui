@@ -1,15 +1,14 @@
-import {FC, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useNavigate, useParams} from "react-router-dom";
 import {Icons} from "@/components/common/icons";
-import {Button} from "@/components/shadcn-ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
+  CardFooter,
 } from "@/components/shadcn-ui/card";
 import {Input} from "@/components/shadcn-ui/input";
 import {Label} from "@/components/shadcn-ui/label";
@@ -29,32 +28,29 @@ import {
 } from "@/services/api/gen";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {
-  InitiatePayment,
   paymentRequestSchema,
+  PaymentRequestType,
 } from "@/features/payment/schema.ts";
 import {useAuthStore} from "@/features/auth";
 import {useToast} from "@/hooks";
 import {PaymentProvider, PostProvider} from "@/services/api";
 import {MOBILE_MONEYS} from "@/features/payment/constants.ts";
 import {nanoid} from "nanoid";
+import {Button} from "@/components/shadcn-ui/button.tsx";
 
-export const PaymentCard: FC = () => {
-  const user = useAuthStore((auth) => auth.user!);
-  const [post, setPost] = useState<Post>();
-  const navigate = useNavigate();
-
-  const {id} = useParams();
-  const toast = useToast();
-  const {register, handleSubmit} = useForm<InitiatePayment>({
+export const PaymentCard = () => {
+  const form = useForm<PaymentRequestType>({
     resolver: zodResolver(paymentRequestSchema),
   });
 
-  const [paymentMethod, setPaymentMethod] =
-    useState<PaymentRequestPaymentMethodEnum>(
-      PaymentRequestPaymentMethodEnum.VISA
-    );
+  const [post, setPost] = useState<Post>();
+  const {id} = useParams();
+  const user = useAuthStore((auth) => auth.user!);
+  const toast = useToast();
+  const navigate = useNavigate();
 
-  const isMobileMoney = MOBILE_MONEYS.includes(paymentMethod);
+  const errors = form.formState.errors;
+  console.log("errors", errors);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -67,16 +63,16 @@ export const PaymentCard: FC = () => {
     }
   }, [id]);
 
-  const initiatePayment: SubmitHandler<InitiatePayment> = async (data) => {
+  const initializePayment: SubmitHandler<any> = async (data) => {
     try {
-      const toCreate: PaymentRequest = {
+      const payment = {
         ...data,
         id: nanoid(),
         post_id: id,
         from: user,
         to: post?.author,
-      };
-      await PaymentProvider.initPayment(toCreate);
+      } as PaymentRequest;
+      await PaymentProvider.initPayment(payment);
       navigate("/");
     } catch (e) {
       toast({
@@ -87,8 +83,13 @@ export const PaymentCard: FC = () => {
     }
   };
 
+  const paymentMethod = form.watch("payment_method");
+  const isMobileMoney = MOBILE_MONEYS.includes(
+    paymentMethod as PaymentRequestPaymentMethodEnum
+  );
+
   return (
-    <form onSubmit={handleSubmit(initiatePayment)}>
+    <form onSubmit={form.handleSubmit(initializePayment)}>
       <Card className="m-auto w-1/2 border-none">
         <CardHeader>
           <CardTitle>Payment Method</CardTitle>
@@ -96,12 +97,14 @@ export const PaymentCard: FC = () => {
             Add a new payment method to your account.
           </CardDescription>
         </CardHeader>
+
         <CardContent className="grid gap-6">
           <RadioGroup
             defaultValue={PaymentRequestPaymentMethodEnum.MVOLA}
-            {...register("payment_method")}
             className="flex justify-between"
-            onClick={(e) => setPaymentMethod((e.target as any).value)}
+            onClick={(e) =>
+              form.setValue("payment_method", (e.target as any).value)
+            }
           >
             <div>
               <RadioGroupItem
@@ -113,9 +116,10 @@ export const PaymentCard: FC = () => {
                 htmlFor="MVOLA"
                 className="flex w-20 flex-col items-center justify-between rounded-md border-2 border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
               >
-                <Icons.mvola className="mb-3 h-6 w-6" />
+                <Icons.mvola className="h-full w-full" />
               </Label>
             </div>
+
             <div>
               <RadioGroupItem
                 value={PaymentRequestPaymentMethodEnum.AIRTEL_MONEY}
@@ -126,7 +130,7 @@ export const PaymentCard: FC = () => {
                 htmlFor="AIRTEL_MONEY"
                 className="flex w-20 flex-col items-center justify-between rounded-md border-2 border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
               >
-                <Icons.airtel className="mb-3 h-6 w-6" />
+                <Icons.airtel className="h-full w-full" />
               </Label>
             </div>
             <div>
@@ -139,7 +143,7 @@ export const PaymentCard: FC = () => {
                 htmlFor="ORANGE_MONEY"
                 className="flex w-20 flex-col items-center justify-between rounded-md border-2 border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
               >
-                <Icons.orange className="mb-3 h-6 w-6" />
+                <Icons.orange className="h-full w-full" />
               </Label>
             </div>
             <div>
@@ -152,10 +156,11 @@ export const PaymentCard: FC = () => {
                 htmlFor="VISA"
                 className="flex w-20 flex-col items-center justify-between rounded-md border-2 border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
               >
-                <Icons.mastercard className="mb-3 h-6 w-6" />
+                <Icons.mastercard className="h-full w-full" />
               </Label>
             </div>
           </RadioGroup>
+
           <div className="grid gap-2">
             <Label htmlFor="label">Project</Label>
             <Input
@@ -163,42 +168,47 @@ export const PaymentCard: FC = () => {
               type="text"
               id="label"
               placeholder="Donation"
-              value="Creation Pipeline"
+              value={post?.title!}
             />
           </div>
+
           <div className="grid gap-2">
             <Label htmlFor="label">Label or Description</Label>
             <Input
-              {...register("label")}
+              {...form.register("label")}
               type="text"
               id="label"
               placeholder="Donation"
             />
           </div>
+
           <div className="grid gap-2">
             <Label htmlFor="ref">Reference(REF-Phone Number)</Label>
             <Input
-              {...register("reference")}
+              {...form.register("reference")}
               type="text"
               id="ref"
               placeholder="REF-XX XX XXX XX"
             />
           </div>
+
           <div className="grid gap-2">
             <Label htmlFor="amount">Amount</Label>
             <Input
-              {...register("amount")}
+              {...form.register("amount")}
               type="number"
               id="amount"
               placeholder="IN MGA"
             />
           </div>
+
           <div className="grid gap-2">
             <Label htmlFor="number">
               {isMobileMoney ? "Phone Number" : "Card number"}
             </Label>
             <Input id="number" placeholder="" />
           </div>
+
           {isMobileMoney ? (
             <div className="grid gap-2">
               <Label htmlFor="number">Secret Code</Label>
@@ -257,8 +267,10 @@ export const PaymentCard: FC = () => {
           <div className="grid gap-2">
             <Label htmlFor="month">Type</Label>
             <Select
-              defaultValue={PaymentRequestPaymentTypeEnum.DONATION}
-              {...register("payment_type")}
+              onValueChange={(value) => {
+                form.setValue("payment_type", value);
+                console.log("val", value);
+              }}
             >
               <SelectTrigger id="type">
                 <SelectValue placeholder="Type" />
@@ -273,12 +285,11 @@ export const PaymentCard: FC = () => {
               </SelectContent>
             </Select>
           </div>
+
+          <CardFooter>
+            <Button type="submit">Confirmer</Button>
+          </CardFooter>
         </CardContent>
-        <CardFooter>
-          <Button className="w-full text-white" type="submit">
-            Continue
-          </Button>
-        </CardFooter>
       </Card>
     </form>
   );

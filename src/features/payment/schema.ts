@@ -4,8 +4,8 @@ export const paymentRequestSchema = z.object({
   amount: z.any(),
   label: z.string(),
   reference: z.string(),
-  payment_method: z.any(),
-  payment_type: z.any(),
+  payment_method: z.string(),
+  payment_type: z.string(),
 });
 
-export type InitiatePayment = z.infer<typeof paymentRequestSchema>;
+export type PaymentRequestType = z.infer<typeof paymentRequestSchema>;

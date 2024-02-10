@@ -18,6 +18,7 @@ export const PostCard: FC<PostProps> = ({post}) => {
   const auth = useAuthStore();
 
   const isAuthenticated = auth.user != null;
+  const isSelfPost = auth.user?.id === post?.author?.id;
   const navigate = useNavigate();
 
   return (
@@ -97,7 +98,7 @@ export const PostCard: FC<PostProps> = ({post}) => {
               </div>
 
               <div className="flex justify-between ">
-                {isAuthenticated && (
+                {isAuthenticated && !isSelfPost && (
                   <Button
                     onClick={() => navigate(`/posts/${post?.id}/payments`)}
                   >
