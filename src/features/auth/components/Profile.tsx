@@ -30,15 +30,15 @@ const Profile: FC<ProfileProps> = ({user}) => {
             </div>
           </Card>
           <div className="flex w-full flex-col gap-4 text-left">
-            <div className="mb-4 ml-2 mt-5 mr-2 text-left">
+            <div className="mb-4 ml-2 mr-2 mt-5 text-left">
               <strong className="mr-2">Last Name:</strong>
               <small className="text-sm">{user.last_name}</small>
             </div>
-            <div className="mb-4 ml-2 mt-5 mr-2 text-left">
+            <div className="mb-4 ml-2 mr-2 mt-5 text-left">
               <strong className="mr-2">First Name:</strong>
               <small className="text-sm">{user.first_name}</small>
             </div>
-            <div className="ml-2 mt-5 mr-2 text-left">
+            <div className="ml-2 mr-2 mt-5 text-left">
               <strong className="mr-2">Username:</strong>
               <small className="text-sm">{user.username}</small>
             </div>
