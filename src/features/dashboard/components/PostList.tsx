@@ -4,7 +4,7 @@ import {useFetch} from "@/hooks";
 import {DEFAULT_QUERY, PostProvider} from "@/services/api";
 import {User} from "@/services/api/gen";
 import {Icons} from "@/components/common/icons.tsx";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {nanoid} from "nanoid";
 import {Button} from "@/components/shadcn-ui/button.tsx";
 
