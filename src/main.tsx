@@ -7,6 +7,7 @@ import {HomePage} from "@/pages/home";
 import {LoginPage, SignupPage} from "@/pages/auth";
 import {CreatePostPage} from "@/pages/post";
 import "./index.css";
+import { ProfilePage } from "./pages/profile";
 
 // eslint-disable-next-line react-refresh/only-export-components
 const ROUTER = createBrowserRouter([
@@ -17,6 +18,10 @@ const ROUTER = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />,
+  },
+  {
+    path: "/profile",
+    element: <ProfilePage/>
   },
   {
     path: "/signup",
