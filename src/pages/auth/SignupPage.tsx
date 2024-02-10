@@ -8,7 +8,7 @@ export const SignupPage: FC = () => {
   return (
     <Layout header={<NavBar page="sign_up" />}>
       <Stepper>
-        <div className="mx-[2.8rem] h-full pt-[3.8rem] md:mx-[11rem]">
+        <div className="h-full pt-[3.8rem] md:mx-[16rem] mx-auto my-0 items-center justify-center">
           <Signup />
         </div>
       </Stepper>
