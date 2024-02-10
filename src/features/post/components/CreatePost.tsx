@@ -1,4 +1,4 @@
-import {FC, useState} from "react";
+import {FC, useRef, useState} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {Editor} from "tinymce";
 import {RichTextEditor} from "@/features/wisiwig";
@@ -22,6 +22,8 @@ import {Post} from "@/services/api/gen";
 import {PostProvider} from "@/services/api";
 import {useToast} from "@/hooks";
 import {toMinors} from "@/lib/money.ts";
+import {ImageUpload} from "@/components/common/image-upload.tsx";
+import {toBase64} from "@/lib/file.ts";
 
 export interface CreatePostProps {
   post: Post;
@@ -30,12 +32,18 @@ export interface CreatePostProps {
 export const CreatePost: FC<CreatePostProps> = ({post}) => {
   const [editor, setEditor] = useState<Editor | null>(null);
   const toast = useToast();
+
+  const thumbnailRef = useRef<File | undefined>(undefined);
+
   const form = useForm<CreatePostData>({
     resolver: zodResolver(createPostSchema),
   });
 
   const createPost: SubmitHandler<CreatePostData> = async (data) => {
     try {
+      const thumbnail = thumbnailRef.current
+        ? await toBase64(thumbnailRef.current)
+        : undefined;
       const toCreate: Post = {
         ...post,
         ...data,
@@ -45,6 +53,7 @@ export const CreatePost: FC<CreatePostProps> = ({post}) => {
           `<h1>Planning to launch ${data.title} project</h1>`,
         creation_datetime: new Date(),
         categories: [],
+        thumbnail,
       };
       await PostProvider.crupdateById(toCreate.id!, toCreate);
     } catch (e) {
@@ -68,6 +77,14 @@ export const CreatePost: FC<CreatePostProps> = ({post}) => {
               </span>
             </div>
           </div>
+
+          <ImageUpload
+            onUpload={async (image) => {
+              thumbnailRef.current = image;
+            }}
+            className=""
+            uploadText="upload post thumbnail"
+          />
 
           <div className="flex h-full w-full flex-col space-y-6">
             <FormField

@@ -1,4 +1,5 @@
 import {FC} from "react";
+import {useNavigate} from "react-router-dom";
 import {Card, CardContent} from "./shadcn-ui/card";
 import {Button} from "./shadcn-ui/button";
 import {Post} from "@/services/api/gen";
@@ -7,13 +8,22 @@ type CardSuggProps = {
   post: Post;
 };
 export const CardSuggestion: FC<CardSuggProps> = ({post}) => {
+  const navigate = useNavigate();
   return (
-    <Card className="mb-8 w-[280px] overflow-hidden rounded-lg">
+    <Card
+      className="mb-8 w-1/2 overflow-hidden rounded-lg"
+      role="button"
+      onClick={() => navigate(`/posts/${post.id}`)}
+    >
       <div className="relative h-48">
         <img
           alt="Tsunami in Malika"
           className="absolute inset-0 h-full w-full rounded-t-lg object-cover"
-          src={`data:image/jpeg;base64,${post?.thumbnail}`}
+          src={
+            post.thumbnail?.includes("data:image")
+              ? post.thumbnail
+              : `data:image/jpeg;base64,${post?.thumbnail}`
+          }
         />
         <div className="absolute bottom-0 left-0 bg-black bg-opacity-50 px-4 py-2 text-white">
           <div className="text-xl font-semibold">

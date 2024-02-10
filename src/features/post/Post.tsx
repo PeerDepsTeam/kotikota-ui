@@ -66,7 +66,11 @@ export const PostCard: FC<PostProps> = ({post}) => {
 
             <div className="">
               <img
-                src={`data:image/jpeg;base64,${post?.thumbnail}`}
+                src={
+                  post.thumbnail?.includes("data:image")
+                    ? post.thumbnail
+                    : `data:image/jpeg;base64,${post?.thumbnail}`
+                }
                 alt=""
                 className=" m-auto mb-[5rem] h-[40rem] w-[70rem]"
               />

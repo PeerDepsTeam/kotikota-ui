@@ -16,7 +16,7 @@ const Profile: FC<ProfileProps> = ({user}) => {
   return (
     <div className="h-scw-screen mt-0 flex w-[110%] items-center justify-center  overflow-hidden">
       <div className="grid h-[40rem] w-[70rem] grid-cols-2 gap-8 p-8 ">
-        <Card className="col-span-1 mb-5 flex flex-col items-start border-gray-50 px-2 text-start">
+        <Card className="col-span-1 mb-5 flex flex-col items-start border-gray-50 px-2 pt-5 text-start">
           <Card
             className="col-span-1 mb-5 flex 
             w-full flex-col items-center justify-center 
@@ -46,7 +46,7 @@ const Profile: FC<ProfileProps> = ({user}) => {
           </div>
         </Card>
 
-        <Card className="border-t-1 col-span-1 flex h-[34.7rem] flex-col items-start space-y-10 border-gray-50 text-start">
+        <Card className="border-t-1 col-span-1 flex h-[34.7rem] flex-col items-start space-y-10 border-gray-50 pt-5 text-start">
           <Card className="col-span-1 mb-2 flex w-full flex-col items-center justify-center border-none shadow-none">
             <div
               className="mb-2 w-[80%] rounded-lg border-2 border-violet-400 p-1

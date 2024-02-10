@@ -41,7 +41,7 @@ export const HomePage: FC = () => {
 
   return (
     <>
-      <div className=" max-w-screen-full mx-auto bg-white">
+      <div className="max-w-screen-full mx-auto flex flex-col space-y-3 bg-white">
         <Landing />
         <section>
           <div className=" mt-5 flex flex-col items-center justify-between py-5">
@@ -66,66 +66,68 @@ export const HomePage: FC = () => {
           <div className="flex flex-wrap items-center justify-center gap-4 py-4">
             <Badge
               variant="outline"
-              className="hover:bg-secondary hover:text-white"
+              className="text-md hover:bg-secondary hover:text-white"
             >
               Disaster
             </Badge>
             <Badge
               variant="outline"
-              className="hover:bg-secondary hover:text-white"
+              className="text-md hover:bg-secondary hover:text-white"
             >
               Children
             </Badge>
             <Badge
               variant="outline"
-              className="hover:bg-secondary hover:text-white"
+              className="text-md hover:bg-secondary hover:text-white"
             >
               Food Crisis
             </Badge>
             <Badge
               variant="outline"
-              className="hover:bg-secondary hover:text-white"
+              className="text-md hover:bg-secondary hover:text-white"
             >
               Health
             </Badge>
             <Badge
               variant="outline"
-              className="hover:bg-secondary hover:text-white"
+              className="text-md hover:bg-secondary hover:text-white"
             >
               Sanitation
             </Badge>
             <Badge
               variant="outline"
-              className="hover:bg-secondary hover:text-white"
+              className="text-md hover:bg-secondary hover:text-white"
             >
               Animal
             </Badge>
             <Badge
               variant="outline"
-              className="hover:bg-secondary hover:text-white"
+              className="text-md hover:bg-secondary hover:text-white"
             >
               Pandemic
             </Badge>
             <Badge
               variant="outline"
-              className="hover:bg-secondary hover:text-white"
+              className="text-md hover:bg-secondary hover:text-white"
             >
               War Crisis
             </Badge>
           </div>
-          <div className="mx-auto my-8 max-w-4xl">
-            <div className="grid grid-cols-1 gap-8">
-              {<CardPostPopular key={posts[0]?.id} postId={posts[0]} />}
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {posts.length > 0 &&
-                  posts.map((posts) => (
+          <div className="mx-auto my-8 w-[70rem]">
+            {posts?.length && (
+              <div className="grid grid-cols-1 gap-8">
+                {<CardPostPopular key={posts[0]?.id} postId={posts[0]} />}
+                <div className="flex justify-between gap-2">
+                  {posts.map((posts) => (
                     <CardSuggestion key={posts?.id} post={posts} />
                   ))}
+                </div>
+                <PaginationCustom />
               </div>
-              <PaginationCustom />
-            </div>
+            )}
           </div>
         </section>
+
         <Partner />
         <Footer />
       </div>

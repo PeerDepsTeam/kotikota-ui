@@ -8,7 +8,7 @@ export interface PostType {
 
 export const CardPostPopular: FC<PostType> = ({postId}) => {
   return (
-    <Card className="mb-8 h-80 w-full overflow-hidden rounded-lg">
+    <Card className="mb-8 h-auto w-full overflow-hidden rounded-lg">
       <div className="flex">
         <div className="relative h-80 w-1/2">
           <img
@@ -17,7 +17,7 @@ export const CardPostPopular: FC<PostType> = ({postId}) => {
             src={`data:image/jpeg;base64,${postId?.thumbnail}`}
           />
         </div>
-        <div className="flex w-1/2 flex-col justify-between rounded-r-lg bg-white bg-opacity-50 p-4 text-secondary">
+        <div className="text-md flex w-1/2 flex-col justify-between rounded-r-lg bg-white bg-opacity-50 p-4 text-secondary">
           <CardContent className="overflow-y-auto">
             <div className="text-center text-4xl font-semibold">
               <a
@@ -29,7 +29,10 @@ export const CardPostPopular: FC<PostType> = ({postId}) => {
             </div>
             <div className="mt-5 flex flex-row items-center justify-around">
               <div className="text-sm">{postId?.creation_datetime}</div>
-              <div className="text-xs">{postId?.amount_required}</div>
+              <div className="text-xs">
+                required amount:{" "}
+                <span className="font-bold">{postId?.amount_required}</span>
+              </div>
             </div>
             <div className="h-15 mt-1 text-sm text-gray-700">
               {postId?.description}
