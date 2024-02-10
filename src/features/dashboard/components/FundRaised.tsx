@@ -38,7 +38,7 @@ export const FundRaised: FC<FundRaisedProps> = ({post, fund}) => {
           <CardContent>{money(fund.amount)}</CardContent>
         </Card>
         <Card
-          className="bg-purple-400 text-white"
+          className="bg-amber-500 text-white"
           style={{width: `${100 - percent}%`}}
         >
           <CardHeader>

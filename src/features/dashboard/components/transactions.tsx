@@ -60,8 +60,8 @@ const Transaction: FC<{payment: Payment}> = ({payment}) => {
         {payment.payment_type}
       </div>
       <div className="ml-4 space-y-1">
-        <p className="text-sm font-bold leading-none">{payment.label}</p>
-        <p className="text-sm text-muted-foreground">{payment.reference}</p>
+        <p className="text-md font-bold leading-none">{payment.label}</p>
+        <p className="text-md text-muted-foreground">{payment.reference}</p>
       </div>
       <div className="text-xl font-bold text-green-500">
         {money(payment.amount)}
